@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://boeqc27uml85m"]
+
+[ext_resource type="Texture2D" uid="uid://bbdxi7xv2nltr" path="res://Assets/Bullet_Pierce.png" id="1_8qwcr"]
+[ext_resource type="Script" uid="uid://jq3qan3qo4av" path="res://Scripts/pierce_effect.gd" id="1_eed4l"]
+
+[node name="PierceEffect" type="Sprite2D" unique_id=1398866433]
+script = ExtResource("1_eed4l")
+
+[node name="BulletPierce" type="Sprite2D" parent="." unique_id=54387082]
+position = Vector2(35.000015, 2.000001)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_8qwcr")

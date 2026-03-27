@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cj5q0p3cw01ir"]
+
+[ext_resource type="Texture2D" uid="uid://brhscfel81qvm" path="res://Assets/hearts.png" id="1_6dyvt"]
+[ext_resource type="Script" uid="uid://k7cr7jyirghu" path="res://Scripts/hearts.gd" id="1_sea5a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6dyvt"]
+radius = 18.0
+
+[node name="Area2D" type="Area2D" unique_id=1205266632 groups=["heart"]]
+script = ExtResource("1_sea5a")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=116444194]
+position = Vector2(0, -0.39999992)
+scale = Vector2(0.2, 0.21)
+texture = ExtResource("1_6dyvt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1629300412]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_6dyvt")
+
+[node name="Timer" type="Timer" parent="." unique_id=689559347]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,6 @@
+res://scenes/Game.tscn
+res://README.md
+res://scripts/SpawnManager.gd
+res://scripts/EnemyData.gd
+res://scripts/LevelData.gd
+res://scripts/GameScene.gd

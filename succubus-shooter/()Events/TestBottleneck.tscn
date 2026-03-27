@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cawsyhbdqwij5"]
+
+[ext_resource type="Script" uid="uid://prr8bprpufrw" path="res://()Events/test_bottleneck.gd" id="1_ik3si"]
+[ext_resource type="Resource" uid="uid://cg8miuog550aj" path="res://Minions/Igeon.tres" id="2_73s8d"]
+
+[node name="TestBottleneck" type="Node2D" unique_id=609929012]
+script = ExtResource("1_ik3si")
+minionRes = ExtResource("2_73s8d")
+
+[node name="Timer" type="Timer" parent="." unique_id=1809640956]
+wait_time = 0.05
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

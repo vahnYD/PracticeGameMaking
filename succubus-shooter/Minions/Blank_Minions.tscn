@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://d3dkhn0633er4"]
+
+[ext_resource type="Script" uid="uid://bpqlrrmah5quj" path="res://Minions/basic_minions.gd" id="1_jd7kf"]
+[ext_resource type="Texture2D" uid="uid://dwaxy3uwa3nuj" path="res://()All_Images/Minions/Igeon (Bird like minion).png" id="1_tdfk8"]
+[ext_resource type="PackedScene" uid="uid://damvbshy8maly" path="res://Components/HitboxComponent.tscn" id="2_tavsg"]
+[ext_resource type="PackedScene" uid="uid://bqc4fb35gjh6p" path="res://Components/HealthComponent.tscn" id="4_5wm8j"]
+
+[sub_resource type="Curve" id="Curve_5wm8j"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tavsg"]
+atlas = ExtResource("1_tdfk8")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jd7kf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tavsg")
+}],
+"loop": true,
+"name": &"unused",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tavsg"]
+radius = 58.034473
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jd7kf"]
+radius = 31.0
+
+[node name="BlankMinions" type="Area2D" unique_id=28343194 groups=["Enemy"]]
+script = ExtResource("1_jd7kf")
+movSpeed_curve = SubResource("Curve_5wm8j")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="." unique_id=1217842826]
+sprite_frames = SubResource("SpriteFrames_jd7kf")
+animation = &"unused"
+autoplay = "unused"
+
+[node name="HitboxComponent" parent="." unique_id=1417714102 node_paths=PackedStringArray("health_component") instance=ExtResource("2_tavsg")]
+health_component = NodePath("../HealthComponent")
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent" unique_id=1040190240]
+shape = SubResource("CircleShape2D_tavsg")
+disabled = true
+
+[node name="PlayerDmgBox" type="CollisionShape2D" parent="." unique_id=1357305632]
+shape = SubResource("CircleShape2D_jd7kf")
+disabled = true
+debug_color = Color(0.6044582, 0.084571056, 0.19514221, 0.41960785)
+
+[node name="HealthComponent" parent="." unique_id=1336904428 instance=ExtResource("4_5wm8j")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

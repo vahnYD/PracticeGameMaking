@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dfpurhk7aavbb"]
+
+[ext_resource type="Texture2D" uid="uid://cawtyh2m5gnxx" path="res://()All_Images/Bullets/Basic_Small.png" id="1_di6x2"]
+[ext_resource type="Script" uid="uid://c0vcxs4trroky" path="res://Bullets/Main-BasicBullets/(0)basic_bullet.gd" id="1_pi7p0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pi7p0"]
+radius = 26.0
+height = 176.0
+
+[node name="BasicSmall" type="Area2D" unique_id=1548724221]
+script = ExtResource("1_pi7p0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1374031928]
+position = Vector2(-29.999996, -0.49999857)
+scale = Vector2(1.8749999, 1.0546875)
+texture = ExtResource("1_di6x2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1344607578]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_pi7p0")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

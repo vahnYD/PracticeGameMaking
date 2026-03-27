@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://de4t2pyxyxom6"]
+
+[ext_resource type="AudioStream" uid="uid://drnjeexfghmfc" path="res://Assets/Sounds/1 - Joyful Journey.mp3" id="1_0j54u"]
+
+[node name="Music" type="AudioStreamPlayer2D" unique_id=1481695585]
+stream = ExtResource("1_0j54u")
+volume_db = 1.5
+pitch_scale = 1.61
+autoplay = true

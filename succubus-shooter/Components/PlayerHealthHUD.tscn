@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c7gowy0ghrbg0"]
+
+[ext_resource type="Texture2D" uid="uid://cg78bpbeunnqx" path="res://()All_Images/Main_icon.png" id="1_kewgl"]
+[ext_resource type="Texture2D" uid="uid://d3qibbsdo05pn" path="res://()All_Images/PlayerHealthMeter_empty.png" id="2_bcpsn"]
+[ext_resource type="Script" uid="uid://fc30ahf83qf5" path="res://Components/scripts/player_health_hud.gd" id="2_nnlbj"]
+[ext_resource type="Texture2D" uid="uid://d4kn48hdwicjc" path="res://()All_Images/PlayerHealthMeter_Fill.png" id="3_nnlbj"]
+
+[node name="Icon" type="Sprite2D" unique_id=1838271838]
+top_level = true
+z_index = 9
+texture = ExtResource("1_kewgl")
+script = ExtResource("2_nnlbj")
+
+[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=1379035716]
+offset_left = -75.0
+offset_top = 31.0
+offset_right = -1.0
+offset_bottom = 543.0
+fill_mode = 3
+texture_under = ExtResource("2_bcpsn")
+texture_progress = ExtResource("3_nnlbj")

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://d26tijr61xxe4"]
+
+[ext_resource type="PackedScene" uid="uid://cy7loqviouqmm" path="res://scenes/Player.tscn" id="1_ibkli"]
+
+[node name="Game" type="Node2D" unique_id=65552057]
+
+[node name="Ball" parent="." unique_id=1685216040 instance=ExtResource("1_ibkli")]
+muzzle_offset = null
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=923745949]

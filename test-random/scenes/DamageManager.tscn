@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://culf8kdpn0qnj"]
+
+[ext_resource type="Script" uid="uid://cdmmh5i5n573b" path="res://Scripts/damage_manager.gd" id="1_u71w7"]
+[ext_resource type="PackedScene" uid="uid://c4d2shsayt2vj" path="res://scenes/DamageNumber.tscn" id="2_a0cvb"]
+
+[node name="DamageManager" type="CanvasLayer" unique_id=583464894]
+script = ExtResource("1_u71w7")
+
+[node name="DamageNumber" parent="." unique_id=912167043 instance=ExtResource("2_a0cvb")]

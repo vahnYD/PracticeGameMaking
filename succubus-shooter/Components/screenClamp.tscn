@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ttm3x7vd5vb4"]
+
+[ext_resource type="Script" uid="uid://1uw2jlvd7vrv" path="res://Components/scripts/screen_clamp.gd" id="1_qvyro"]
+
+[node name="ScreenClamp" type="Node" unique_id=1406629548]
+script = ExtResource("1_qvyro")

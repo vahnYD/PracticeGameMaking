@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cs7bevib105a"]
+
+[ext_resource type="Script" uid="uid://bhh6r52aoou3v" path="res://upgrade_circle.gd" id="1_mjpm5"]
+[ext_resource type="Texture2D" uid="uid://c30tqhlcd888m" path="res://()All_Art/Upgrade.png" id="1_v2xt1"]
+[ext_resource type="PackedScene" uid="uid://dc5v2ablhm2t4" path="res://weapons/dagger.tscn" id="2_atwg3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mjpm5"]
+radius = 6.0
+
+[node name="UpgradeCircle" type="Area2D" unique_id=904444414]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_mjpm5")
+Item = ExtResource("2_atwg3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=109775159]
+texture = ExtResource("1_v2xt1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1568132157]
+shape = SubResource("CircleShape2D_mjpm5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

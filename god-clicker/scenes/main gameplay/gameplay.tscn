@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dtrvma2x852ax"]
+
+[ext_resource type="Script" uid="uid://cqtqmbydn5r8l" path="res://scripts/mainGame.gd" id="1_dbh74"]
+[ext_resource type="PackedScene" uid="uid://dmpu8m04mw845" path="res://scenes/main gameplay/BasicAttack.tscn" id="2_uarfx"]
+
+[node name="Gameplay" type="Node2D" unique_id=155901660]
+script = ExtResource("1_dbh74")
+shockwave_scene = ExtResource("2_uarfx")
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=597953511]
+wait_time = 0.1
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]

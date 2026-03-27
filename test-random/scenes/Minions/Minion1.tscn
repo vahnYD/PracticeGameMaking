@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://4r3ro3qrib44"]
+
+[ext_resource type="Script" uid="uid://ydkjdgs8prx5" path="res://Scripts/minion_1.gd" id="1_3w4nk"]
+[ext_resource type="Texture2D" uid="uid://b8l8nel7illmv" path="res://Assets/Minion1.png" id="1_x24sm"]
+[ext_resource type="PackedScene" uid="uid://cj5q0p3cw01ir" path="res://scenes/Hearts.tscn" id="2_hsm7r"]
+[ext_resource type="PackedScene" uid="uid://boeqc27uml85m" path="res://scenes/PierceEffect.tscn" id="3_no3ax"]
+[ext_resource type="AudioStream" uid="uid://bu87qwaj0snwm" path="res://Assets/Sounds/pop_1.wav" id="5_f0bs1"]
+[ext_resource type="Texture2D" uid="uid://727wtjh5oh3q" path="res://Assets/Minions/Minion_1/Attacking/Minion1_1.png" id="6_n13qa"]
+[ext_resource type="Texture2D" uid="uid://cb367phoipsxs" path="res://Assets/Minions/Minion_1/Idle/Minion1_1.png" id="7_4dtny"]
+[ext_resource type="Texture2D" uid="uid://be5kmgwntdvvu" path="res://Assets/Minions/Minion_1/Idle/Minion1_2.png" id="8_rbvna"]
+[ext_resource type="Texture2D" uid="uid://dtklvqiyt08ud" path="res://Assets/Minions/Minion_1/Idle/Minion1_3.png" id="9_6dbip"]
+[ext_resource type="Texture2D" uid="uid://cl35is2tqglm5" path="res://Assets/Minions/Minion_1/Idle/Minion1_4.png" id="10_ouwf4"]
+[ext_resource type="Texture2D" uid="uid://wud3pe8q4266" path="res://Assets/Minions/Minion_1/Idle/Minion1_5.png" id="11_53ahb"]
+[ext_resource type="Texture2D" uid="uid://dn6q3gva8jx8l" path="res://Assets/Minions/Minion_1/Idle/Minion1_6.png" id="12_h2y5f"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lfi3t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_n13qa")
+}],
+"loop": true,
+"name": &"Attacking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_4dtny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_rbvna")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6dbip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ouwf4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_53ahb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_h2y5f")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 24.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3w4nk"]
+radius = 45.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hsm7r"]
+radius = 244.03279
+
+[node name="Minion1" type="Area2D" unique_id=659896522 node_paths=PackedStringArray("deathSound", "AnimatedSprite") groups=["enemies"]]
+script = ExtResource("1_3w4nk")
+heart_scene = ExtResource("2_hsm7r")
+PiercedEffect = ExtResource("3_no3ax")
+deathSound = NodePath("onDeath")
+AnimatedSprite = NodePath("AnimatedSprite2D")
+HP = 10.0
+Speed = 375.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1554230116]
+position = Vector2(1, 0)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_lfi3t")
+animation = &"Attacking"
+autoplay = "Idle"
+frame_progress = 0.047919564
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1774681712]
+visible = false
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_x24sm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=479178846]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_3w4nk")
+
+[node name="HomingDetectRange" type="Area2D" parent="." unique_id=1115931530]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HomingDetectRange" unique_id=504156262]
+shape = SubResource("CircleShape2D_hsm7r")
+
+[node name="onDeath" type="AudioStreamPlayer2D" parent="." unique_id=1977968826]
+stream = ExtResource("5_f0bs1")
+volume_db = -9.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="HomingDetectRange" to="." method="_on_homing_detect_range_area_entered"]

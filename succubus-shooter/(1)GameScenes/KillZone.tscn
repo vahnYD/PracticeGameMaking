@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dqsdkytjdgknf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfwiw"]
+size = Vector2(780, 3085)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6n7a"]
+size = Vector2(6473.0625, 463.5)
+
+[node name="KillZone" type="Area2D" unique_id=2129428529 groups=["KillZone"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1619113869]
+position = Vector2(-1059, 1074.5)
+shape = SubResource("RectangleShape2D_rfwiw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=517211182]
+position = Vector2(1834.4688, -700.75)
+shape = SubResource("RectangleShape2D_x6n7a")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=514217939]
+position = Vector2(1955.0625, 2850)
+shape = SubResource("RectangleShape2D_x6n7a")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="." unique_id=1526204453]
+position = Vector2(4977, 1075)
+shape = SubResource("RectangleShape2D_rfwiw")

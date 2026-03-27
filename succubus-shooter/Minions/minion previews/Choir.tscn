@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://d1d3otjgoj7lm"]
+
+[ext_resource type="Texture2D" uid="uid://dd0m7xnl877a0" path="res://()All_Images/Minions/Choir_animations/Choir_1.png" id="1_f4vhe"]
+[ext_resource type="Texture2D" uid="uid://c1u6w7bn4j40s" path="res://()All_Images/Minions/Choir_animations/Choir_2.png" id="2_xjcob"]
+[ext_resource type="Texture2D" uid="uid://byl8sfaujnebg" path="res://()All_Images/Minions/Choir_animations/Choir_3.png" id="3_vqicd"]
+[ext_resource type="Texture2D" uid="uid://dghxy5nob34au" path="res://()All_Images/Minions/Choir_animations/Choir_4.png" id="4_fvbat"]
+[ext_resource type="Texture2D" uid="uid://6b7p85jvqbmv" path="res://()All_Images/Minions/Choir_animations/Choir_5.png" id="5_dhac8"]
+[ext_resource type="Texture2D" uid="uid://dre1bt6f0suq4" path="res://()All_Images/Minions/Choir_animations/Choir_6.png" id="6_k5evw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q82os"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_f4vhe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xjcob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vqicd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fvbat")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dhac8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_k5evw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f4vhe"]
+radius = 38.0
+
+[node name="Choir" type="Area2D" unique_id=473185805]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1238111024]
+position = Vector2(1, -2)
+sprite_frames = SubResource("SpriteFrames_q82os")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=762287941]
+shape = SubResource("CircleShape2D_f4vhe")

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://kkbrb02b6scc"]
+
+[ext_resource type="PackedScene" uid="uid://8m4valcxdusc" path="res://scenes/Enemy.tscn" id="1_hat22"]
+[ext_resource type="Script" uid="uid://cbawnvs02joa6" path="res://scripts/main_game.gd" id="1_p73vr"]
+[ext_resource type="Script" uid="uid://lv5xnagbds7l" path="res://scripts/enemy_data.gd" id="2_p73vr"]
+[ext_resource type="Resource" uid="uid://dg2n7hf3o05be" path="res://Resources/enemy-data/GreenSlime.tres" id="2_xej52"]
+[ext_resource type="Resource" uid="uid://bt6kdroc7oxcw" path="res://Resources/enemy-data/grunt.tres" id="3_7fyak"]
+
+[node name="MainGame" type="Node2D" unique_id=863079969]
+script = ExtResource("1_p73vr")
+EnemyResources = Array[ExtResource("2_p73vr")]([ExtResource("2_xej52"), ExtResource("3_7fyak")])
+BlankEnemy = ExtResource("1_hat22")
+MaxSummonWeight = 44

@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://cy7loqviouqmm"]
+
+[ext_resource type="Script" uid="uid://y3670l1u0wfy" path="res://Scripts/player.gd" id="1_3li8b"]
+[ext_resource type="Texture2D" uid="uid://2y283myqj3bj" path="res://Assets/Ball_Attacking.png" id="1_v6fml"]
+[ext_resource type="Texture2D" uid="uid://d1k3sux3g42hq" path="res://Assets/Ball_Idle.png" id="2_3li8b"]
+[ext_resource type="PackedScene" uid="uid://u3v1htibon8b" path="res://scenes/bullet.tscn" id="2_mdl7e"]
+[ext_resource type="AudioStream" uid="uid://d2mv5sfcbkb4u" path="res://Assets/Sounds/8_bit_chime_quick.wav" id="5_qu4a1"]
+[ext_resource type="AudioStream" uid="uid://8gess0shk55o" path="res://Assets/Sounds/synth_confirmation.wav" id="6_70d11"]
+[ext_resource type="AudioStream" uid="uid://cuog1xj88sejq" path="res://Assets/Sounds/sci_fi_hover_high.wav" id="7_cw2d6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mdl7e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_v6fml")
+}],
+"loop": true,
+"name": &"attacking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3li8b")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qu4a1"]
+radius = 43.046486
+
+[node name="Player" type="CharacterBody2D" unique_id=1685216040]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_3li8b")
+bullet_scene = ExtResource("2_mdl7e")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=250360481]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_mdl7e")
+animation = &"attacking"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2050214059]
+position = Vector2(3, -1)
+shape = SubResource("CircleShape2D_qu4a1")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1558910772 groups=["Player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=65541886]
+position = Vector2(3, -1)
+shape = SubResource("CircleShape2D_qu4a1")
+
+[node name="damagedTimer" type="Timer" parent="." unique_id=1630303708]
+wait_time = 0.35
+one_shot = true
+
+[node name="ShootingSound" type="AudioStreamPlayer2D" parent="." unique_id=1692242371]
+stream = ExtResource("5_qu4a1")
+volume_db = -5.5
+pitch_scale = 4.0
+max_distance = 2222.0
+attenuation = 0.0023226717
+
+[node name="PowerUPSound" type="AudioStreamPlayer2D" parent="." unique_id=203304787]
+stream = ExtResource("6_70d11")
+volume_db = 5.0
+pitch_scale = 2.0
+max_distance = 3000.0
+attenuation = 0.0039062514
+
+[node name="GrabHeartSound" type="AudioStreamPlayer2D" parent="." unique_id=882149453]
+stream = ExtResource("7_cw2d6")
+pitch_scale = 2.86
+attenuation = 0.00033350565
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="tree_exited" from="PowerUPSound" to="." method="_on_power_up_sound_tree_exited"]

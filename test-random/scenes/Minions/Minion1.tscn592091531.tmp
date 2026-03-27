@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://4r3ro3qrib44"]
+
+[ext_resource type="Script" uid="uid://ydkjdgs8prx5" path="res://Scripts/minion_1.gd" id="1_3w4nk"]
+[ext_resource type="Texture2D" uid="uid://b8l8nel7illmv" path="res://Assets/Minion1.png" id="1_x24sm"]
+[ext_resource type="PackedScene" uid="uid://cj5q0p3cw01ir" path="res://scenes/Hearts.tscn" id="2_hsm7r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3w4nk"]
+radius = 58.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hsm7r"]
+radius = 244.03279
+
+[node name="Minion1" type="Area2D" unique_id=659896522 groups=["enemies"]]
+script = ExtResource("1_3w4nk")
+heart_scene = ExtResource("2_hsm7r")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1774681712]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_x24sm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=479178846]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_3w4nk")
+
+[node name="HomingDetectRange" type="Area2D" parent="." unique_id=1115931530]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HomingDetectRange" unique_id=504156262]
+shape = SubResource("CircleShape2D_hsm7r")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="HomingDetectRange" to="." method="_on_homing_detect_range_area_entered"]

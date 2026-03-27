@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bpb6b8onsdmtc"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ovby7"]
+normal = Vector2(0, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_o0l7h"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r8jkq"]
+distance = -950.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uy0kl"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a7u33"]
+normal = Vector2(1, 0)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c84vo"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d2ysu"]
+normal = Vector2(-1, 0)
+distance = -1601.0
+
+[node name="WorldBorder" type="Node2D" unique_id=884024285]
+
+[node name="WorldBorderTop" type="StaticBody2D" parent="." unique_id=1454910317]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorderTop" unique_id=588593859]
+shape = SubResource("WorldBoundaryShape2D_ovby7")
+
+[node name="WorldBorderBottom" type="StaticBody2D" parent="." unique_id=30508047]
+physics_material_override = SubResource("PhysicsMaterial_o0l7h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorderBottom" unique_id=1029662531]
+shape = SubResource("WorldBoundaryShape2D_r8jkq")
+
+[node name="WorldBorderLeft" type="StaticBody2D" parent="." unique_id=417072890]
+physics_material_override = SubResource("PhysicsMaterial_uy0kl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorderLeft" unique_id=1577122376]
+shape = SubResource("WorldBoundaryShape2D_a7u33")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1801176977]
+physics_material_override = SubResource("PhysicsMaterial_c84vo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1968593048]
+shape = SubResource("WorldBoundaryShape2D_d2ysu")

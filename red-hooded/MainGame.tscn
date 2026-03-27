@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://c5pq8wonm7kn8"]
+
+[ext_resource type="PackedScene" uid="uid://c1kw3frd4yids" path="res://Character.tscn" id="1_ws5ob"]
+[ext_resource type="PackedScene" uid="uid://dnnymjyswoc5r" path="res://slime.tscn" id="2_bqqt8"]
+[ext_resource type="Texture2D" uid="uid://ddj7230kr3vwo" path="res://()All_Art/TopDownFantasy-Forest/Mockup3.png" id="4_bqqt8"]
+[ext_resource type="Script" uid="uid://bwf1t31g0w3ns" path="res://enemy_blank.gd" id="5_8qpgq"]
+[ext_resource type="PackedScene" uid="uid://cs7bevib105a" path="res://UpgradeCircle.tscn" id="5_pv6b4"]
+[ext_resource type="PackedScene" uid="uid://6jwp5mtajgnd" path="res://weapons/Sword.tscn" id="6_pv6b4"]
+
+[node name="GameScene" type="Node2D" unique_id=16738052]
+z_index = 1
+y_sort_enabled = true
+
+[node name="CharacterBody2D" parent="." unique_id=2015838319 instance=ExtResource("1_ws5ob")]
+position = Vector2(23, 61)
+
+[node name="Slime" parent="." unique_id=531099072 instance=ExtResource("2_bqqt8")]
+position = Vector2(82, 62)
+
+[node name="EnemyBlank" type="Area2D" parent="." unique_id=594201688]
+y_sort_enabled = true
+position = Vector2(146, 114)
+script = ExtResource("5_8qpgq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBlank" unique_id=1250801127]
+position = Vector2(100, -33)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBlank" unique_id=2022932028]
+
+[node name="Mockup3" type="Sprite2D" parent="." unique_id=629258122]
+position = Vector2(65, 72)
+texture = ExtResource("4_bqqt8")
+
+[node name="UpgradeCircle" parent="." unique_id=904444414 instance=ExtResource("5_pv6b4")]
+position = Vector2(56, 119)
+Item = ExtResource("6_pv6b4")
+
+[node name="UpgradeCircle2" parent="." unique_id=1851928529 instance=ExtResource("5_pv6b4")]
+position = Vector2(134, 86)

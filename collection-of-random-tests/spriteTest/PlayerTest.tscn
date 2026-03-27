@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://hitlkt38u347"]
+
+[ext_resource type="Script" uid="uid://jsrugqyy063k" path="res://spriteTest/note.gd" id="1_fvxmx"]
+[ext_resource type="Texture2D" uid="uid://bi11orkl6yv3g" path="res://spriteTest/GoblinKid.png" id="1_tlyrh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_exicl"]
+
+[node name="PlayerTest" type="CharacterBody2D" unique_id=1662882990]
+script = ExtResource("1_fvxmx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=588865460]
+texture = ExtResource("1_tlyrh")
+hframes = 5
+vframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1021333851]
+shape = SubResource("CircleShape2D_exicl")

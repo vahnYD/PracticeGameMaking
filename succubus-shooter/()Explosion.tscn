@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ydu1ijoossjf"]
+
+[ext_resource type="Script" uid="uid://dor10d105ffv6" path="res://()explosion.gd" id="1_cir6l"]
+[ext_resource type="Texture2D" uid="uid://bhsnwp64r1tb7" path="res://()All_Images/Circle.png" id="1_xai4p"]
+
+[node name="()explosion" type="Sprite2D" unique_id=847054052]
+self_modulate = Color(1, 1, 1, 0.27058825)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_xai4p")
+script = ExtResource("1_cir6l")

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c4d2shsayt2vj"]
+
+[ext_resource type="Script" uid="uid://c57ccrhtgcpph" path="res://Scripts/damage_number.gd" id="1_5t1lh"]
+[ext_resource type="FontFile" uid="uid://dqlxiitn8m7bq" path="res://Assets/Font/Sweet Biscuit.otf" id="1_p3gxv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5t1lh"]
+font = ExtResource("1_p3gxv")
+font_size = 30
+font_color = Color(0.30637127, 0.008690028, 0.0029501985, 1)
+outline_size = 3
+
+[node name="DamageNumber" type="Control" unique_id=912167043]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5t1lh")
+
+[node name="Label" type="Label" parent="." unique_id=43664571]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "o"
+label_settings = SubResource("LabelSettings_5t1lh")
+horizontal_alignment = 1
+vertical_alignment = 1

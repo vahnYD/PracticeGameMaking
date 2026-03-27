@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="MinionResource" format=3 uid="uid://bh0nq7c1ww7p"]
+
+[ext_resource type="Texture2D" uid="uid://by4142omnjjs6" path="res://()All_Images/Minions/Beauty_animations/Beauty_1.png" id="1_0twsf"]
+[ext_resource type="Texture2D" uid="uid://cj8ihcmw0o2s2" path="res://()All_Images/Minions/Beauty_animations/Beauty_2.png" id="2_503nr"]
+[ext_resource type="Texture2D" uid="uid://bnsj5t502b4gh" path="res://()All_Images/Minions/Beauty_animations/Beauty_3.png" id="3_4vaph"]
+[ext_resource type="Script" uid="uid://gsdyimw2kax" path="res://Minions/minion_resource.gd" id="6_qqms3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_60d7b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0twsf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_0twsf")
+}],
+"loop": false,
+"name": &"death",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0twsf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_503nr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4vaph")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3uyhl"]
+radius = 17.0
+
+[resource]
+script = ExtResource("6_qqms3")
+collision_shape = SubResource("CircleShape2D_3uyhl")
+base_MinionName = "Beauty"
+base_max_health = 90
+base_speed = 230.0
+base_touchDamage = 8
+animations = SubResource("SpriteFrames_60d7b")
+lifeTime = 28.0
+move_type = 1

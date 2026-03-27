@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ObjectPoolSettings" format=3 uid="uid://cnwvgk6uqrmld"]
+
+[ext_resource type="Script" uid="uid://m06i8sl51k77" path="res://addons/ObjectPool/PooledNodeSettings.gd" id="1_fbkt4"]
+[ext_resource type="Script" uid="uid://cviy7kc4aofih" path="res://addons/ObjectPool/ObjectPoolSettings.gd" id="2_f83nh"]
+
+[resource]
+script = ExtResource("2_f83nh")
+metadata/_custom_type_script = "uid://cviy7kc4aofih"

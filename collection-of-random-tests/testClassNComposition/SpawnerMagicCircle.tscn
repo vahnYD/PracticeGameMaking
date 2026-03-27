@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://bdojjf02i76ax"]
+
+[ext_resource type="Script" uid="uid://cnx21ufe8d4vs" path="res://testClassNComposition/spawner_magic_circle.gd" id="1_6n0ei"]
+[ext_resource type="Texture2D" uid="uid://dihsm2ry8lo4f" path="res://testClassNComposition/MagicCircleTransparent-export.png" id="1_wnhhu"]
+
+[sub_resource type="Animation" id="Animation_wnhhu"]
+resource_name = "Magical"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.21568628, 0.5372549, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6n0ei"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y30ic"]
+_data = {
+&"Magical": SubResource("Animation_wnhhu"),
+&"RESET": SubResource("Animation_6n0ei")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6n0ei"]
+radius = 73.171036
+
+[node name="SpawnerMagicCircle" type="Area2D" unique_id=1592261970]
+script = ExtResource("1_6n0ei")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=615108264]
+visible = false
+texture = ExtResource("1_wnhhu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=1744416726]
+libraries/ = SubResource("AnimationLibrary_y30ic")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2075245763]
+shape = SubResource("CircleShape2D_6n0ei")
+
+[node name="SummonAnimation" type="Timer" parent="." unique_id=1649484305]
+wait_time = 0.15

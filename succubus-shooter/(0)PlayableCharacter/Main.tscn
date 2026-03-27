@@ -1,0 +1,196 @@
+[gd_scene format=3 uid="uid://kgnnnbu0m7k5"]
+
+[ext_resource type="Script" uid="uid://cjyq2qilbggse" path="res://(0)PlayableCharacter/main.gd" id="1_5v0mi"]
+[ext_resource type="Texture2D" uid="uid://dheaahhgwke6l" path="res://()All_Images/Wings_Floating/1.png" id="1_xaurm"]
+[ext_resource type="Resource" uid="uid://c6jxk3edu6oqj" path="res://Bullets/Main-BasicBullets/Basic_Big_resource.tres" id="2_k2qnj"]
+[ext_resource type="Script" uid="uid://c0rdqhknllixq" path="res://Bullets/bullet_resource.gd" id="2_lihsi"]
+[ext_resource type="Texture2D" uid="uid://b7v0334tdx7t1" path="res://()All_Images/Wings_Floating/2.png" id="2_owljx"]
+[ext_resource type="Texture2D" uid="uid://cmbpw17b50jin" path="res://()All_Images/Main.png" id="2_qr02c"]
+[ext_resource type="Texture2D" uid="uid://drw31lp2fskkl" path="res://()All_Images/Main_Soul.png" id="3_qr02c"]
+[ext_resource type="Texture2D" uid="uid://gkgmrxf1lbyi" path="res://()All_Images/Wings_Floating/3.png" id="3_w8hxx"]
+[ext_resource type="Resource" uid="uid://ckuafetdoni02" path="res://Bullets/Main-BasicBullets/Basic_Small_resource.tres" id="4_san3x"]
+[ext_resource type="Texture2D" uid="uid://dry7jfo25jwru" path="res://()All_Images/Wings_Floating/4.png" id="4_yi8f5"]
+[ext_resource type="Texture2D" uid="uid://bdyar0qyj3sw0" path="res://()All_Images/Wings_Floating/5.png" id="5_5v0mi"]
+[ext_resource type="Resource" uid="uid://dfseo42crw0yu" path="res://Bullets/Main-BasicBullets/Basic_Laser_resource.tres" id="5_p3vst"]
+[ext_resource type="Texture2D" uid="uid://c5syfem1uifsw" path="res://()All_Images/Wings_Floating/6.png" id="6_k2qnj"]
+[ext_resource type="Texture2D" uid="uid://b2ataq0jddv87" path="res://()All_Images/Wings_Floating/7.png" id="7_lihsi"]
+[ext_resource type="Texture2D" uid="uid://bdfn6iwgk47fs" path="res://()All_Images/Main_atkBack.png" id="9_5v0mi"]
+[ext_resource type="Texture2D" uid="uid://b52wy1jtfs6w2" path="res://()All_Images/Main_atkForward.png" id="9_yi8f5"]
+[ext_resource type="Texture2D" uid="uid://b86itesca0yag" path="res://()All_Images/Main_goBack.png" id="11_5v0mi"]
+[ext_resource type="Texture2D" uid="uid://bx3co4ukk5now" path="res://()All_Images/Main_goForward.png" id="12_k2qnj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bsswl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xaurm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_owljx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_w8hxx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yi8f5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5v0mi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_k2qnj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lihsi")
+}],
+"loop": true,
+"name": &"fast",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xaurm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_owljx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_w8hxx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yi8f5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5v0mi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_k2qnj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lihsi")
+}],
+"loop": true,
+"name": &"slow",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_va1uw"]
+atlas = ExtResource("2_qr02c")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fleod"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_5v0mi")
+}],
+"loop": true,
+"name": &"attack_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_yi8f5")
+}],
+"loop": true,
+"name": &"attack_forward",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_5v0mi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5v0mi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5v0mi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5v0mi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5v0mi")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_va1uw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_5v0mi")
+}],
+"loop": true,
+"name": &"go_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_k2qnj")
+}],
+"loop": true,
+"name": &"go_forward",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smox7"]
+atlas = ExtResource("3_qr02c")
+region = Rect2(84, 78, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_if5q5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smox7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yp43y"]
+radius = 16.0
+
+[node name="Main" type="CharacterBody2D" unique_id=126796942 groups=["thePlayer"]]
+z_index = 3
+motion_mode = 1
+script = ExtResource("1_5v0mi")
+bullet_resources = Array[ExtResource("2_lihsi")]([ExtResource("2_k2qnj"), ExtResource("4_san3x"), ExtResource("5_p3vst")])
+chara_name = "Main"
+ATK = 30.0
+MaxHealth = 100.0
+DEF = 4.0
+attack_cooldown = 0.145
+
+[node name="Wings" type="AnimatedSprite2D" parent="." unique_id=475112830]
+position = Vector2(1, 4)
+rotation = -0.19373155
+sprite_frames = SubResource("SpriteFrames_bsswl")
+animation = &"slow"
+autoplay = "slow"
+
+[node name="Body" type="AnimatedSprite2D" parent="." unique_id=1337671613]
+sprite_frames = SubResource("SpriteFrames_fleod")
+animation = &"death"
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
+
+[node name="Soul" type="AnimatedSprite2D" parent="." unique_id=795251538]
+position = Vector2(17, 15)
+sprite_frames = SubResource("SpriteFrames_if5q5")
+
+[node name="HitBox" type="CollisionShape2D" parent="." unique_id=579220684]
+position = Vector2(22, 8)
+shape = SubResource("CircleShape2D_yp43y")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1279566115]
+position = Vector2(266, 4)

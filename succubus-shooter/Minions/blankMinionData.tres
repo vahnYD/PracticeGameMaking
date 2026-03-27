@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="MinionResource" format=3 uid="uid://w4enuqa6e3qo"]
+
+[ext_resource type="Texture2D" uid="uid://c65xi1bct5m0t" path="res://()All_Images/Minions/Bubble.png" id="1_bdv2m"]
+[ext_resource type="Script" uid="uid://gsdyimw2kax" path="res://Minions/minion_resource.gd" id="2_pwpkl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ac65f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bdv2m")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bdv2m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x3onh"]
+radius = 8.0
+
+[resource]
+script = ExtResource("2_pwpkl")
+collision_shape = SubResource("CircleShape2D_x3onh")
+animations = SubResource("SpriteFrames_ac65f")

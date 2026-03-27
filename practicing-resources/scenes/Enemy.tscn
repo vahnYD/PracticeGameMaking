@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://8m4valcxdusc"]
+
+[ext_resource type="Script" uid="uid://baw8yy0j74a5b" path="res://scripts/enemy_base.gd" id="1_ft8do"]
+[ext_resource type="Script" uid="uid://lv5xnagbds7l" path="res://scripts/enemy_data.gd" id="2_ft8do"]
+[ext_resource type="Texture2D" uid="uid://b7yi1ayrimbfx" path="res://Art/GUI/Box.png" id="2_mpr68"]
+[ext_resource type="Texture2D" uid="uid://dgcswfpgr7rq0" path="res://Art/Entities/Slime-green.png" id="3_5wwv6"]
+[ext_resource type="Script" uid="uid://t5w7dgt57aac" path="res://scripts/hp_length.gd" id="3_ft8do"]
+
+[sub_resource type="Resource" id="Resource_5wwv6"]
+script = ExtResource("2_ft8do")
+metadata/_custom_type_script = "uid://lv5xnagbds7l"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wwv6"]
+atlas = ExtResource("3_5wwv6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vja8"]
+atlas = ExtResource("3_5wwv6")
+region = Rect2(128, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwav8"]
+atlas = ExtResource("3_5wwv6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1i2q2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wwv6")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vja8")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iwav8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3gvst"]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=389643875]
+velocity = Vector2(3, 0)
+script = ExtResource("1_ft8do")
+data = SubResource("Resource_5wwv6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2023184094]
+sprite_frames = SubResource("SpriteFrames_1i2q2")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=481729219]
+shape = SubResource("CircleShape2D_3gvst")
+
+[node name="HPBar" type="Sprite2D" parent="." unique_id=2109980149]
+self_modulate = Color(0.10524041, 0.10524041, 0.1052404, 1)
+position = Vector2(-26, -35)
+scale = Vector2(6.5000005, 0.625)
+texture = ExtResource("2_mpr68")
+centered = false
+
+[node name="HPLength" type="Sprite2D" parent="HPBar" unique_id=883934800]
+self_modulate = Color(1, 0, 0.3647059, 1)
+position = Vector2(0.15384644, 1.6000011)
+scale = Vector2(0.9615385, 0.6)
+texture = ExtResource("2_mpr68")
+centered = false
+script = ExtResource("3_ft8do")
+
+[node name="Timer" type="Timer" parent="." unique_id=726387797]
+autostart = true
+
+[connection signal="property_list_changed" from="." to="." method="_on_property_list_changed"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

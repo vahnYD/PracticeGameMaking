@@ -1,0 +1,14 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1772470103
+README.md::TextFile::-1::1772440312::0::1::::<><>::
+::res://Game/::1772469476
+::res://scenes/::1772470077
+Game.tscn::PackedScene::-1::1772440312::0::1::::<><>::res://scripts/GameScene.gd
+::res://scripts/::1772470088
+Enemy.gd::GDScript::-1::1772440312::0::1::::Enemy<>CharacterBody2D<>::
+EnemyData.gd::GDScript::-1::1772440312::0::1::::EnemyData<>Resource<>::
+GameScene.gd::GDScript::-1::1772440312::0::1::::<>Node2D<>::
+LevelData.gd::GDScript::-1::1772440312::0::1::::LevelData<>Resource<>::
+Player.gd::GDScript::-1::1772440312::0::1::::Player<>CharacterBody2D<>::
+SpawnManager.gd::GDScript::-1::1772440312::0::1::::SpawnManager<>Node2D<>::
+SpawnWave.gd::GDScript::-1::1772440312::0::1::::SpawnWave<>Resource<>::

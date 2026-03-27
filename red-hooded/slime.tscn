@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://dnnymjyswoc5r"]
+
+[ext_resource type="Texture2D" uid="uid://dty48lee2r6bx" path="res://()All_Art/Slime-green.png" id="1_2d52u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8l48"]
+atlas = ExtResource("1_2d52u")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0v7qb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8l48")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2d52u"]
+radius = 5.0
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5jc4t"]
+radius = 8.0
+height = 28.0
+
+[node name="Slime" type="CharacterBody2D" unique_id=1238343763]
+z_index = 1
+y_sort_enabled = true
+collision_mask = 2
+motion_mode = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=767282623]
+sprite_frames = SubResource("SpriteFrames_0v7qb")
+
+[node name="worldBoxCollision" type="CollisionShape2D" parent="." unique_id=139282149]
+position = Vector2(0, 3)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_2d52u")
+
+[node name="hitbox" type="Area2D" parent="." unique_id=1179023844]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=1249802370]
+position = Vector2(0, 1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_5jc4t")

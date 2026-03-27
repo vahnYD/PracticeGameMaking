@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cejhs8hlo67bv"]
+
+[ext_resource type="Texture2D" uid="uid://byc53h5hhcr44" path="res://assets/art/Objects/Crystal_floating.png" id="1_tbii6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82rpv"]
+atlas = ExtResource("1_tbii6")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6ata"]
+atlas = ExtResource("1_tbii6")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4akt"]
+atlas = ExtResource("1_tbii6")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cc1s"]
+atlas = ExtResource("1_tbii6")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_euunn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82rpv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6ata")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4akt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cc1s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1nrxs"]
+radius = 28.0
+height = 114.0
+
+[node name="MagicCrystal" type="Area2D" unique_id=1331948281]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=494051127]
+sprite_frames = SubResource("SpriteFrames_euunn")
+autoplay = "default"
+frame_progress = 0.13503125
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=309451462]
+shape = SubResource("CapsuleShape2D_1nrxs")

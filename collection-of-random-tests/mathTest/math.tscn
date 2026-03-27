@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://hcljcbw45si3"]
+
+[ext_resource type="Script" uid="uid://cqenu3ll6bu1g" path="res://mathTest/math.gd" id="1_n3a3h"]
+
+[sub_resource type="FontFile" id="FontFile_w6145"]
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/44/0/ascent = 0.0
+cache/0/44/0/descent = 0.0
+cache/0/44/0/underline_position = 0.0
+cache/0/44/0/underline_thickness = 0.0
+cache/0/44/0/scale = 1.0
+cache/0/33/0/ascent = 0.0
+cache/0/33/0/descent = 0.0
+cache/0/33/0/underline_position = 0.0
+cache/0/33/0/underline_thickness = 0.0
+cache/0/33/0/scale = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_0hmrq"]
+font = SubResource("FontFile_w6145")
+font_size = 33
+
+[node name="Math" type="Node2D" unique_id=1491393095]
+script = ExtResource("1_n3a3h")
+
+[node name="Label" type="Label" parent="." unique_id=293244668]
+offset_left = 176.0
+offset_top = 86.0
+offset_right = 1036.0
+offset_bottom = 634.0
+text = "test"
+label_settings = SubResource("LabelSettings_0hmrq")
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="." unique_id=1094521045]
+offset_left = 249.0
+offset_top = 25.0
+offset_right = 301.0
+offset_bottom = 54.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

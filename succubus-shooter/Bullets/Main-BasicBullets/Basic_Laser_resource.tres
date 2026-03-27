@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BulletResource" format=3 uid="uid://dfseo42crw0yu"]
+
+[ext_resource type="PackedScene" uid="uid://c27g4m2ebumws" path="res://Bullets/Main-BasicBullets/Basic_Laser.tscn" id="1_6cyes"]
+[ext_resource type="Script" uid="uid://c0rdqhknllixq" path="res://Bullets/bullet_resource.gd" id="2_8vxit"]
+
+[resource]
+script = ExtResource("2_8vxit")
+SpecificBulletScene = ExtResource("1_6cyes")
+bullet_name = "basic laser"
+damage_multiplier = 0.5
+speed = 4500.0
+unloadTimerValue = 1.0
+bulletPoolAmount = 77

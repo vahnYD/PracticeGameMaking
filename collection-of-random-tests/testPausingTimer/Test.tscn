@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b8to84lku0k4h"]
+
+[ext_resource type="Script" uid="uid://dpelcetihymbw" path="res://testPausingTimer/tests.gd" id="1_myinc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_myinc"]
+font_size = 23
+
+[node name="Node2D" type="Node2D" unique_id=1090594055 node_paths=PackedStringArray("explanationTxt")]
+script = ExtResource("1_myinc")
+explanationTxt = NodePath("Label")
+
+[node name="Timer" type="Timer" parent="." unique_id=1013475863]
+
+[node name="Label" type="Label" parent="." unique_id=134533907]
+offset_left = 40.0
+offset_top = 81.0
+offset_right = 250.0
+offset_bottom = 241.0
+text = "asd"
+label_settings = SubResource("LabelSettings_myinc")

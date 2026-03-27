@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dh3kjaad76xes"]
+
+[ext_resource type="Texture2D" uid="uid://c14ce78nk1sgx" path="res://()All_Images/Minions/Igeon_animations/Igeon_1.png" id="1_vmubk"]
+[ext_resource type="Texture2D" uid="uid://ciaws8wr0dpsr" path="res://()All_Images/Minions/Igeon_animations/Igeon_2.png" id="2_gmmpf"]
+[ext_resource type="Texture2D" uid="uid://dl06jkrfj0vbh" path="res://()All_Images/Minions/Igeon_animations/Igeon_3.png" id="3_85ro5"]
+[ext_resource type="Texture2D" uid="uid://qmhkdskyc2ok" path="res://()All_Images/Minions/Igeon_animations/Igeon_4.png" id="4_lwvdr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cjskm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gmmpf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_vmubk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_85ro5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lwvdr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p3v1l"]
+radius = 36.0
+
+[node name="Igeon" type="Area2D" unique_id=1771105795]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=69360544]
+sprite_frames = SubResource("SpriteFrames_cjskm")
+autoplay = "default"
+frame_progress = 0.34599632
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=322843523]
+shape = SubResource("CircleShape2D_p3v1l")

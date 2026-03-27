@@ -1,0 +1,195 @@
+[gd_scene format=3 uid="uid://55ylcwo3tuk2"]
+
+[ext_resource type="Script" uid="uid://08pfm8gedqrh" path="res://Scripts/spawn_trigger_box.gd" id="1_grcwy"]
+[ext_resource type="Texture2D" uid="uid://b5cdbau611y2m" path="res://Assets/WhiteBox.png" id="2_yh6ev"]
+
+[sub_resource type="Animation" id="Animation_701cl"]
+resource_name = "DownDownFast"
+length = 1.75
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.2916667, 0, 0, 0),
+"times": PackedFloat32Array(-0.03333333, 1.75)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 960, -0.2916667, -160, 0, 0),
+"times": PackedFloat32Array(0, 1.75)
+}
+
+[sub_resource type="Animation" id="Animation_grcwy"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_frdmj"]
+resource_name = "SuperFastUpDown"
+length = 0.85
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 946)]
+}
+
+[sub_resource type="Animation" id="Animation_yh6ev"]
+resource_name = "UpDownFast"
+length = 1.75
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.2916667, 0, 0, 0),
+"times": PackedFloat32Array(0, 1.75)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 960, -0.2916667, -160, 0, 0),
+"times": PackedFloat32Array(0, 1.75)
+}
+
+[sub_resource type="Animation" id="Animation_4bs4n"]
+resource_name = "UpDownSlow"
+length = 5.0666666
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -4, -0.84444445, 0.6666667, 0, 0),
+"times": PackedFloat32Array(0, 5.0666666)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 959, -0.84444445, -159.83334, 0, 0),
+"times": PackedFloat32Array(0, 5.0666666)
+}
+
+[sub_resource type="Animation" id="Animation_3hqxw"]
+resource_name = "UpUpFast"
+length = 1.75
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(0, -0.2916667, 0, 0, 0, 1, -0.2916667, 0, 0.0027777753, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.75, 1.7666667)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(960, -0.2916667, -160, 0, 0, 0, -0.2916667, 158.49059, 0.0027777753, -1.5094327, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.75, 1.7666667)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_grcwy"]
+_data = {
+&"DownDownFast": SubResource("Animation_701cl"),
+&"RESET": SubResource("Animation_grcwy"),
+&"SuperFastUpDown": SubResource("Animation_frdmj"),
+&"UpDownFast": SubResource("Animation_yh6ev"),
+&"UpDownSlow": SubResource("Animation_4bs4n"),
+&"UpUpFast": SubResource("Animation_3hqxw")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bs4n"]
+size = Vector2(32.5, 33)
+
+[node name="SpawnTriggerBox" type="Area2D" unique_id=797960507 groups=["SpawnCheckbox"]]
+script = ExtResource("1_grcwy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=212232119]
+libraries/ = SubResource("AnimationLibrary_grcwy")
+autoplay = &"UpDownSlow"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=645972873]
+shape = SubResource("RectangleShape2D_4bs4n")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D" unique_id=1325365315]
+visible = false
+position = Vector2(3.9999998, 1.999939)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_yh6ev")

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c27g4m2ebumws"]
+
+[ext_resource type="Script" uid="uid://c0vcxs4trroky" path="res://Bullets/Main-BasicBullets/(0)basic_bullet.gd" id="1_n1uif"]
+[ext_resource type="Texture2D" uid="uid://6i6y02ck7uco" path="res://()All_Images/Bullets/Basic_Laser.png" id="1_vmggq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vmggq"]
+radius = 18.0
+height = 160.0
+
+[node name="BasicLaser" type="Area2D" unique_id=796883116]
+script = ExtResource("1_n1uif")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=481630863]
+position = Vector2(-37, 0)
+scale = Vector2(1.9453125, 1)
+texture = ExtResource("1_vmggq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1652745540]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_vmggq")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

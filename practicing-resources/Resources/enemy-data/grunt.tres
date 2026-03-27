@@ -1,0 +1,156 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://bt6kdroc7oxcw"]
+
+[ext_resource type="Script" uid="uid://lv5xnagbds7l" path="res://scripts/enemy_data.gd" id="1_t2xt0"]
+[ext_resource type="Texture2D" uid="uid://cgmnoxbis04d4" path="res://Art/Entities/Grunt.png" id="2_3rpgb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyf3g"]
+atlas = ExtResource("2_3rpgb")
+region = Rect2(0, 88, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8qba"]
+atlas = ExtResource("2_3rpgb")
+region = Rect2(132, 88, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhfob"]
+atlas = ExtResource("2_3rpgb")
+region = Rect2(132, 44, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmrrh"]
+atlas = ExtResource("2_3rpgb")
+region = Rect2(88, 44, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvrky"]
+atlas = ExtResource("2_3rpgb")
+region = Rect2(220, 44, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffrp7"]
+atlas = ExtResource("2_3rpgb")
+region = Rect2(0, 0, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2d7u"]
+atlas = ExtResource("2_3rpgb")
+region = Rect2(176, 88, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stjw5"]
+atlas = ExtResource("2_3rpgb")
+region = Rect2(0, 132, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml5hn"]
+atlas = ExtResource("2_3rpgb")
+region = Rect2(44, 132, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eixpr"]
+atlas = ExtResource("2_3rpgb")
+region = Rect2(88, 132, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfh1x"]
+atlas = ExtResource("2_3rpgb")
+region = Rect2(132, 132, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3klhi"]
+atlas = ExtResource("2_3rpgb")
+region = Rect2(264, 132, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vqo8"]
+atlas = ExtResource("2_3rpgb")
+region = Rect2(220, 132, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbbfv"]
+atlas = ExtResource("2_3rpgb")
+region = Rect2(0, 0, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ikfm"]
+atlas = ExtResource("2_3rpgb")
+region = Rect2(44, 0, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2v1s4"]
+atlas = ExtResource("2_3rpgb")
+region = Rect2(88, 0, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcbbc"]
+atlas = ExtResource("2_3rpgb")
+region = Rect2(132, 0, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47gaf"]
+atlas = ExtResource("2_3rpgb")
+region = Rect2(176, 0, 44, 44)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_koeex"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyf3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8qba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhfob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmrrh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvrky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffrp7")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2d7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stjw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml5hn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eixpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfh1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3klhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vqo8")
+}],
+"loop": false,
+"name": &"death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbbfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ikfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2v1s4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcbbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47gaf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
+
+[resource]
+script = ExtResource("1_t2xt0")
+max_health = 325.0
+attack_damage = 40.0
+speed = 13.0
+sprite_frames = SubResource("SpriteFrames_koeex")
+SummonWeight = 5

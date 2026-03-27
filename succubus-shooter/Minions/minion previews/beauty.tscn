@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://byv8u2tn1afl0"]
+
+[ext_resource type="Texture2D" uid="uid://by4142omnjjs6" path="res://()All_Images/Minions/Beauty_animations/Beauty_1.png" id="1_qvq6c"]
+[ext_resource type="Texture2D" uid="uid://cj8ihcmw0o2s2" path="res://()All_Images/Minions/Beauty_animations/Beauty_2.png" id="2_07ero"]
+[ext_resource type="Texture2D" uid="uid://bnsj5t502b4gh" path="res://()All_Images/Minions/Beauty_animations/Beauty_3.png" id="3_si1dw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hyn6i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qvq6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_qvq6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_07ero")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_07ero")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_si1dw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_si1dw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_44th1"]
+radius = 17.0
+
+[node name="Beauty" type="Area2D" unique_id=937684500]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=929801741]
+sprite_frames = SubResource("SpriteFrames_hyn6i")
+autoplay = "default"
+frame = 1
+frame_progress = 0.68100727
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=71392441]
+shape = SubResource("CircleShape2D_44th1")
