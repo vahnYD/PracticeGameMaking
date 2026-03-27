@@ -16,11 +16,14 @@ var bulletSpawnPosition: Vector2
 var curHealth : float
 
 @export var DEF: float
+@export var DmgMitigationCurve: Curve
 
 @export var move_speed : float = 800
 @export var attack_cooldown: float = 0.1333
 @export var currentPowerBuff: int = 0 # decides what pattern of bullet you shoot
 @export var MaxPowerBuff: int = 5
+
+
 var HeartCount: int # Heart increase PowerBuff
 var main_bullet_Piercing_ON : bool = false
 

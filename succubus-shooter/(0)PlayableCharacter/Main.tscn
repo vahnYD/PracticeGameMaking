@@ -19,6 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://b86itesca0yag" path="res://()All_Images/Main_goBack.png" id="11_5v0mi"]
 [ext_resource type="Texture2D" uid="uid://bx3co4ukk5now" path="res://()All_Images/Main_goForward.png" id="12_k2qnj"]
 
+[sub_resource type="Curve" id="Curve_n0l4w"]
+_data = [Vector2(0, 0), 0.0, 0.8689568, 0, 0, Vector2(0.1, 0.185), 1.846176, 1.846176, 0, 0, Vector2(0.5, 0.8), 0.9473976, 0.9473976, 0, 0, Vector2(1, 0.995), 0.0, 0.0, 0, 0]
+point_count = 4
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_bsswl"]
 animations = [{
 "frames": [{
@@ -157,7 +161,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yp43y"]
-radius = 16.0
+radius = 13.0
 
 [node name="Main" type="CharacterBody2D" unique_id=126796942 groups=["thePlayer"]]
 z_index = 3
@@ -168,6 +172,7 @@ chara_name = "Main"
 ATK = 30.0
 MaxHealth = 100.0
 DEF = 4.0
+DmgMitigationCurve = SubResource("Curve_n0l4w")
 attack_cooldown = 0.145
 
 [node name="Wings" type="AnimatedSprite2D" parent="." unique_id=475112830]

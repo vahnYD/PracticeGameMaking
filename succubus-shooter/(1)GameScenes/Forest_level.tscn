@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://xs43k3ncjj0k" path="res://()Events/SpawnBoxes.tscn" id="12_41nni"]
 [ext_resource type="Resource" uid="uid://bh0nq7c1ww7p" path="res://Minions/Beauty.tres" id="12_mbxxl"]
 [ext_resource type="PackedScene" uid="uid://c7gowy0ghrbg0" path="res://Components/PlayerHealthHUD.tscn" id="13_mbxxl"]
-[ext_resource type="PackedScene" uid="uid://cawsyhbdqwij5" path="res://()Events/TestBottleneck.tscn" id="14_tc8cl"]
 
 [node name="Game" type="Node2D" unique_id=779614526]
 script = ExtResource("1_fleod")
@@ -59,7 +58,3 @@ minion_res = ExtResource("12_mbxxl")
 
 [node name="Icon" parent="." unique_id=1838271838 instance=ExtResource("13_mbxxl")]
 position = Vector2(94, 85)
-
-[node name="TestBottleneck" parent="." unique_id=609929012 instance=ExtResource("14_tc8cl")]
-position = Vector2(-3, -2)
-timerDelay = 0.08

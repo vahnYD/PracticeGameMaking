@@ -88,9 +88,9 @@ func load_miniondata_from_resource(res: MinionResource):
 		specific_animationPlay.sprite_frames = specific_animationsFrames
 		specific_movementType = res.move_type
 		if not res.base_MinionName == "Unknown":
-			## this below is buggy as hell.
-			specific_HitboxComponent.updateRadius(res.collision_shape.radius * 1.3)
-			specific_playerDmgCollissionBox.shape.radius = res.collision_shape.radius
+			specific_playerDmgCollissionBox.shape = res.collision_shape.duplicate()
+			HitBox.shape = res.collision_shape.duplicate()
+			HitBox.shape.radius *= 1.4
 			if not specific_HealthComponent.died.is_connected(minion_death):
 				specific_HealthComponent.died.connect(minion_death)
 	
