@@ -37,11 +37,12 @@ func clamp_position_to_screen(target: Node2D, desired_world_pos: Vector2, half_s
 func world_to_screen(node: Node2D, world_pos: Vector2) -> Vector2:
 	var camera = node.get_viewport().get_camera_2d()
 	if camera:
-		return world_pos - camera.global_position + node.get_viewport_rect().size / 2.0
+		
+		return world_pos - camera.global_position + GlobalScripts.max_ScreenSize / 2.0
 	return world_pos
 
 func screen_to_world(node: Node2D, screen_pos: Vector2) -> Vector2:
 	var camera = node.get_viewport().get_camera_2d()
 	if camera:
-		return screen_pos + camera.global_position - node.get_viewport_rect().size / 2.0
+		return screen_pos + camera.global_position - GlobalScripts.max_ScreenSize / 2.0
 	return screen_pos

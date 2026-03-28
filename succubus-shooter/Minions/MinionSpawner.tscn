@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://shnqnwguc0h2"]
+
+[ext_resource type="Script" uid="uid://bu2gase63liep" path="res://Minions/minion_spawner.gd" id="1_w6wx5"]
+[ext_resource type="Texture2D" uid="uid://bugbdptm6b1rj" path="res://()All_Images/Box.png" id="2_w6wx5"]
+
+[node name="MinionSpawner" type="Node2D" unique_id=233835538]
+script = ExtResource("1_w6wx5")
+
+[node name="IndicatorBox" type="Sprite2D" parent="." unique_id=1290729107]
+texture = ExtResource("2_w6wx5")

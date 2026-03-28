@@ -3,23 +3,27 @@
 [ext_resource type="Texture2D" uid="uid://bcl6uur8vmfkk" path="res://()All_Images/BG_Forest.png" id="1_24jf5"]
 [ext_resource type="Script" uid="uid://b1jfshrl42gcw" path="res://(1)GameScenes/forest_level.gd" id="1_fleod"]
 [ext_resource type="PackedScene" uid="uid://kgnnnbu0m7k5" path="res://(0)PlayableCharacter/Main.tscn" id="2_danyq"]
+[ext_resource type="Script" uid="uid://gsdyimw2kax" path="res://Minions/minion_resource.gd" id="2_tc8cl"]
 [ext_resource type="Texture2D" uid="uid://b1y6c3iia4ywy" path="res://()All_Images/Minions/Choir (Eye homing minion).png" id="3_cgew1"]
 [ext_resource type="Texture2D" uid="uid://dyxp3oavw82l8" path="res://()All_Images/Bosses/Boss_Triangle.png" id="4_15pxs"]
 [ext_resource type="Script" uid="uid://c3v8ioytfjtuc" path="res://(1)GameScenes/boss.gd" id="4_va1uw"]
 [ext_resource type="PackedScene" uid="uid://b3los1cc5f2x4" path="res://Components/BossHealthComponent.tscn" id="5_1k51m"]
 [ext_resource type="Resource" uid="uid://cg8miuog550aj" path="res://Minions/Igeon.tres" id="9_64yyh"]
 [ext_resource type="PackedScene" uid="uid://dqsdkytjdgknf" path="res://(1)GameScenes/KillZone.tscn" id="10_3c7kx"]
-[ext_resource type="PackedScene" uid="uid://shnqnwguc0h2" path="res://Minions/MinionSpawn.tscn" id="10_slo5m"]
+[ext_resource type="PackedScene" uid="uid://shnqnwguc0h2" path="res://Minions/MinionSpawner.tscn" id="10_slo5m"]
 [ext_resource type="PackedScene" uid="uid://xs43k3ncjj0k" path="res://()Events/SpawnBoxes.tscn" id="12_41nni"]
 [ext_resource type="Resource" uid="uid://bh0nq7c1ww7p" path="res://Minions/Beauty.tres" id="12_mbxxl"]
 [ext_resource type="PackedScene" uid="uid://c7gowy0ghrbg0" path="res://Components/PlayerHealthHUD.tscn" id="13_mbxxl"]
 
 [node name="Game" type="Node2D" unique_id=779614526]
 script = ExtResource("1_fleod")
+ThisLevel_Minions = Array[ExtResource("2_tc8cl")]([ExtResource("9_64yyh")])
+spawnerSceneRef = ExtResource("10_slo5m")
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1722298185]
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1083547805]
+self_modulate = Color(1, 1, 1, 0.26666668)
 position = Vector2(-6798, 0)
 texture = ExtResource("1_24jf5")
 centered = false
@@ -43,9 +47,7 @@ texture = ExtResource("4_15pxs")
 position = Vector2(331, 1049)
 
 [node name="MinionSpawner2" parent="." unique_id=1209759772 instance=ExtResource("10_slo5m")]
-visible = true
 position = Vector2(3955, 1698)
-minionRes = ExtResource("9_64yyh")
 
 [node name="KillZone" parent="." unique_id=2129428529 instance=ExtResource("10_3c7kx")]
 

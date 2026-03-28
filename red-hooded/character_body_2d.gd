@@ -26,7 +26,7 @@ var direction : Vector2
 
 var flippedSprite : int # must be either 1 (NOT flipped) or -1 (flipped)
 var wieldWeapon : bool = false
-
+var input_direction : Vector2
 
 const VerticalDampen : float = 0.5
 enum State {
@@ -42,7 +42,7 @@ func _ready():
 
 
 func _physics_process(delta: float) -> void:
-	var input_direction := Input.get_vector("left", "right", "up", "down")
+	input_direction = Input.get_vector("left", "right", "up", "down")
 	input_direction.y *= VerticalDampen
 	velocity = input_direction * speed
 	
@@ -85,12 +85,20 @@ func _process(delta):
 
 
 func dash():
+	rotation_degrees = 14 * flippedSprite
+	right_shoulder.rotation_degrees = 10 * input_direction.x
+	right_shoulder.position.y -= 1
+	left_shoulder.rotation_degrees = 10 * input_direction.x
 	curState = State.dash
 	dashCooldown = 0.5
 	speed += 200
 	await get_tree().create_timer(0.2).timeout
 	curState = State.none
 	speed -= 200
+	rotation_degrees = 0
+	right_shoulder.position.y += 1
+	right_shoulder.rotation_degrees = 0
+	left_shoulder.rotation_degrees = 0
 
 
 func changeEq(weapon: PackedScene):

@@ -161,7 +161,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yp43y"]
-radius = 13.0
+radius = 15.0
 
 [node name="Main" type="CharacterBody2D" unique_id=126796942 groups=["thePlayer"]]
 z_index = 3

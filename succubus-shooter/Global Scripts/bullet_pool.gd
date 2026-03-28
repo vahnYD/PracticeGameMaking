@@ -38,7 +38,7 @@ func fill_bullets_pool(bullet_resource: BulletResource):
 		this_bullet.returned_to_pool.connect(return_to_pool)
 		this_bullet.set_process(false)
 		this_bullet.set_physics_process(false)
-		this_bullet.visible = false
+		#this_bullet.visible = false
 		this_bullet.global_position = Vector2(-256,-256)
 		this_bullet.load_from_resource(bullet_resource)
 		bullet_dictionary[dictionary_bullet_name].append(this_bullet)
@@ -57,6 +57,7 @@ func put_bullet_toGame(bulletName: String, spawn_position: Vector2, bullet_rotat
 		if on_fire.is_valid():
 			on_fire.call(bullet)
 		bullet.fire(spawn_position, bullet_rotation_degree, Dmg)
+		
 
 
 func return_to_pool(bullet :Bullet, bullet_name: String):

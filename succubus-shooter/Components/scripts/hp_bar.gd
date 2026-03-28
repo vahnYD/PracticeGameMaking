@@ -11,4 +11,3 @@ func _physics_process(_delta):
 	global_position.x = clamp(global_position.x, 0, screen_size.x)
 	global_position.y = clamp(global_position.y, 0, screen_size.y)
 	
-	

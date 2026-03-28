@@ -5,6 +5,6 @@
 
 [node name="()explosion" type="Sprite2D" unique_id=847054052]
 self_modulate = Color(1, 1, 1, 0.27058825)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.36, 0.36)
 texture = ExtResource("1_xai4p")
 script = ExtResource("1_cir6l")

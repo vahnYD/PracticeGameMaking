@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dfpurhk7aavbb" path="res://Bullets/Main-BasicBullets/Basic_Small.tscn" id="1_7l5ei"]
 [ext_resource type="Script" uid="uid://c0rdqhknllixq" path="res://Bullets/bullet_resource.gd" id="2_7v8nu"]
+[ext_resource type="PackedScene" uid="uid://ydu1ijoossjf" path="res://()Explosion.tscn" id="2_ln366"]
 
 [resource]
 script = ExtResource("2_7v8nu")
@@ -9,5 +10,6 @@ SpecificBulletScene = ExtResource("1_7l5ei")
 bullet_name = "basic small"
 damage_multiplier = 0.8
 speed = 4500.0
+onDestroyScene = ExtResource("2_ln366")
 unloadTimerValue = 1.0
 bulletPoolAmount = 77

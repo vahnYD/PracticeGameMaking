@@ -25,7 +25,7 @@ var movedir : Vector2
 var veer_timer: float = 1.2
 var veer_timer_reset: float = 1.2
 
-var veer_intensity: float = 0.3
+var veer_intensity: float = 0.8
 var veer_intensity_reset: float = 0.8
 
 var veer_chance: float = 0.7 # (70%)
@@ -39,17 +39,29 @@ signal returned_minion_to_pool(this_minion: Area2D)
 
 var isActivated: bool = false
 
+var initialHaste: float = 2.7
+var SpawnedFrom: int # -1 means spawned from the top, 0 means spawned from the Center, 1 means spawned from the Bottom
+var screenCenter: Vector2
+
 func _physics_process(delta):
 	movedir = -transform.x
-	
+	if initialHaste > 0  and SpawnedFrom != 0:
+		initialHaste -= delta
+		goToCenter(delta)
 	match specific_movementType:
 		global_enums.Minion_moveType.random:
 			randomMovement(delta)
+	
 	# Apply final movement
-	position += movedir * specific_base_speed * delta
+	global_position += movedir.normalized() * specific_base_speed * delta
 	specific_lifetime -= delta
 	if specific_lifetime <= 0 and isActivated: 
 		minion_death()
+
+func goToCenter(delta):
+	veer_direction = global_position.direction_to(screenCenter) * 0.5
+	movedir += veer_direction
+
 
 func randomMovement(delta):
 		if veer_timer > 0:
@@ -64,12 +76,12 @@ func randomMovement(delta):
 
 
 func _ready():
+	screenCenter = GlobalScripts.max_ScreenSize / 2.0
 	if MinionData:
 		load_miniondata_from_resource(MinionData)
 		specific_animationPlay.play("default")
 		specific_playerDmgCollissionBox.disabled = false
 		HitBox.disabled = false
-		
 
 
 func load_miniondata_from_resource(res: MinionResource):
@@ -90,13 +102,12 @@ func load_miniondata_from_resource(res: MinionResource):
 		if not res.base_MinionName == "Unknown":
 			specific_playerDmgCollissionBox.shape = res.collision_shape.duplicate()
 			HitBox.shape = res.collision_shape.duplicate()
-			HitBox.shape.radius *= 1.4
+			HitBox.shape.radius += 12.0
 			if not specific_HealthComponent.died.is_connected(minion_death):
 				specific_HealthComponent.died.connect(minion_death)
 	
 
 func player_Hit(player: PlayerCharacter):
-	#print(player.chara_name + " hit")
 	player.takeDamage(specific_base_touchDamage)
 	
 
@@ -106,7 +117,7 @@ func minion_death():
 func deactivate_minion() -> void:
 	isActivated = false
 	specific_animationPlay.play("death")
-	# disable all collission 
+	# disable all collission :
 	specific_playerDmgCollissionBox.set_deferred("disabled",true)
 	HitBox.set_deferred("disabled",true)
 	set_process(false)
@@ -130,6 +141,11 @@ func deactivate_minion() -> void:
 
 func spawn(pos: Vector2, angle: float, _extraData: String = "") -> void:
 	global_position = pos
+	if global_position.y < 96.0:
+		SpawnedFrom = -1
+	if global_position.y > (GlobalScripts.max_ScreenSize.y - 96.0):
+		SpawnedFrom = 1
+	initialHaste = 2.7
 	rotation = deg_to_rad(angle)
 	z_index = 2
 	specific_playerDmgCollissionBox.disabled = false
@@ -148,10 +164,7 @@ func _on_hitbox_component_area_entered(area):
 	if area.is_in_group("KillZone"):
 		deactivate_minion()
 
-
 func _on_body_entered(body):
 	if body.is_in_group("thePlayer"):
 		player_Hit(body)
 		deactivate_minion()
-
-	

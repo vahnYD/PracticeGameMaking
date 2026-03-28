@@ -38,9 +38,12 @@ var _Movement_direction : Vector2
 var TemporaryPowerupTimer : float = 1 #fully temprorary, lol
 var _shotDelay: float = 0
 func _ready():
+	playScreen = GlobalScripts.max_ScreenSize
+	
 	curHealth = MaxHealth
 	bulletSpawnPosition = BulletSpawnMarker.global_position
-	playScreen = get_viewport_rect().size
+
+	#print("render_resolution : "+ str(GlobalScripts.render_resolution))
 	await get_tree().process_frame
 	playScreen.y -= 128
 	playScreen.x -= 256
@@ -106,12 +109,16 @@ func _process(delta):
 		_shotDelay = 0
 
 func shot_bullet(bullet_name: String, bullet_pos: Vector2, bullet_angle: float, Dmg: float) -> void:
-	# calls BulletPool class to put the bullet into the game, MainBullet first at SpawnMarker, forward (angle = 0)
+	## calls BulletPool class to put the bullet into the game, MainBullet first at SpawnMarker, forward (angle = 0)
+	
 	if bullet_name == "basic big":
 		BulletPool.put_bullet_toGame("basic big", bullet_pos, bullet_angle, Dmg, func(b: Bullet):
-			if main_bullet_Piercing_ON and b.specific_ability != BulletResource.Ability_list.Piercing:
-				b.specific_ability = BulletResource.Ability_list.Piercing
+			if main_bullet_Piercing_ON and b.specific_ability != BulletResource.Ability_list.WeakPiercing:
+				#print("huh")
+				b.specific_ability = BulletResource.Ability_list.WeakPiercing
+				b.specific_weakPiercingDmgDropoff = 30.0
 				b.modulate = Color.WHITE.lerp(Color.DEEP_PINK, 0.4) )
+				
 	else:
 		BulletPool.put_bullet_toGame(bullet_name, bullet_pos , bullet_angle, Dmg)		
 
@@ -120,9 +127,9 @@ func PowerUp():
 	currentPowerBuff += 1
 	if currentPowerBuff >= 5:
 		main_bullet_Piercing_ON = true
-		BulletPool.modify_bullets("basic big", func(bullet: Bullet):
-			bullet.specific_ability = BulletResource.Ability_list.Piercing
-			bullet.modulate = Color.WHITE.lerp(Color.DEEP_PINK, 0.4) )
+		#BulletPool.modify_bullets("basic big", func(bullet: Bullet):
+			#bullet.specific_ability = BulletResource.Ability_list.Piercing
+			#bullet.modulate = Color.WHITE.lerp(Color.DEEP_PINK, 0.4) )
 	else:
 		main_bullet_Piercing_ON = false
 
