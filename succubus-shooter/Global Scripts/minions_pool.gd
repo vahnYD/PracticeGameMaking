@@ -45,12 +45,12 @@ func get_minion_fromPool(res: MinionResource) -> basic_minion:
 		return null
 
 	
-func put_minion_toGame(res: MinionResource, spawn_position: Vector2, minion_rotation_degree : float, extraData: String = ""):
+func put_minion_toGame(res: MinionResource, spawn_position: Vector2, onSpawn: Callable = Callable(), minion_movementOverride : Callable = Callable() ):
 	
 	#var minion = await get_minion_fromPool(res)
 	var minion = get_minion_fromPool(res)
 	if minion:
-		minion.spawn(spawn_position, minion_rotation_degree, extraData)
+		minion.spawn(spawn_position, minion_movementOverride, onSpawn)
 
 
 func return_minion_to_pool(minion: Node):

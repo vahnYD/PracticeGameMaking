@@ -30,7 +30,9 @@ radius = 58.034473
 [sub_resource type="CircleShape2D" id="CircleShape2D_jd7kf"]
 radius = 31.0
 
-[node name="BlankMinions" type="Area2D" unique_id=28343194 groups=["Enemy"]]
+[node name="BlankMinions" type="Area2D" unique_id=28343194]
+collision_layer = 4
+monitorable = false
 script = ExtResource("1_jd7kf")
 movSpeed_curve = SubResource("Curve_5wm8j")
 
@@ -39,7 +41,7 @@ sprite_frames = SubResource("SpriteFrames_jd7kf")
 animation = &"unused"
 autoplay = "unused"
 
-[node name="HitboxComponent" parent="." unique_id=1417714102 node_paths=PackedStringArray("health_component") instance=ExtResource("2_tavsg")]
+[node name="HitboxComponent" parent="." unique_id=1417714102 node_paths=PackedStringArray("health_component") groups=["Enemy"] instance=ExtResource("2_tavsg")]
 health_component = NodePath("../HealthComponent")
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent" unique_id=1040190240]

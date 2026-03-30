@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="WaveCurveData" format=3 uid="uid://dwbt4e5mynkmw"]
+
+[ext_resource type="Script" uid="uid://ce6tanke61ocx" path="res://Components/common_resources/Curves/curveMaker.gd" id="1_ulobj"]
+
+[sub_resource type="Curve" id="Curve_ut3ht"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 0, Vector2(1, 1), 1.0, 0.0, 0, 0]
+point_count = 2
+
+[resource]
+script = ExtResource("1_ulobj")
+curve_name = "linear"
+curve = SubResource("Curve_ut3ht")
+metadata/_custom_type_script = "uid://ce6tanke61ocx"

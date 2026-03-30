@@ -45,4 +45,5 @@ base_speed = 230.0
 base_touchDamage = 8
 animations = SubResource("SpriteFrames_60d7b")
 lifeTime = 28.0
-move_type = 1
+move_type = 2
+freeze_time = 4.0

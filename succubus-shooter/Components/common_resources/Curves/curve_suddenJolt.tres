@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WaveCurveData" format=3 uid="uid://wmcfhabxmrbr"]
+
+[ext_resource type="Script" uid="uid://ce6tanke61ocx" path="res://Components/common_resources/Curves/curveMaker.gd" id="1_fxw6a"]
+
+[sub_resource type="Curve" id="Curve_fxw6a"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.7, 0.3), 1.333, 1.333, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[resource]
+script = ExtResource("1_fxw6a")
+curve_name = "suddenJolt"
+curve = SubResource("Curve_fxw6a")
+initial_readType = 0
+metadata/_custom_type_script = "uid://ce6tanke61ocx"

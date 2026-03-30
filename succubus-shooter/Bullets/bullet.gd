@@ -60,7 +60,6 @@ func load_from_resource(res: BulletResource):
 #endregion
 	
 	
-	
 
 
 func bullet_Hit(touch: Area2D):
@@ -84,12 +83,12 @@ func bullet_Hit(touch: Area2D):
 				else:
 					specific_damage = specific_damage * ((100.0 - specific_weakPiercingDmgDropoff)/100)
 					modulate.a *=  ((100.0 - specific_weakPiercingDmgDropoff)/100)
-				
 				specific_pierceCount += 1
 			
 			BulletResource.Ability_list.Lifesteal:
 				if randf() * 100 <= specific_lifestealChance:
 					lifesteal.emit(specific_lifestealAmount)
+					deactivate_bullet()
 
 
 	if touch.is_in_group("KillZone"):

@@ -5,7 +5,7 @@ extends Node2D
 signal died
 signal took_damage
 
-@export var max_health: float = 200.0
+@export var max_health: float = 20.0
 
 @onready var damageAccumulationTimer: Timer = $DmgAccumulationTimer
 @onready var DamageNumberLabel: Label = $DamageNumberPosition/DamageNumberLabel

@@ -4,8 +4,16 @@ extends Node
 
 enum Minion_moveType{
 	basic,
+	frozen,
 	random,
 	zigzag,
 	homing,
-	haste
+	haste,
+	OVERRIDE
+}
+
+enum Minion_SpawnType{
+	basic,
+	chasing_player,
+	spinning
 }

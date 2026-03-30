@@ -80,7 +80,10 @@ func _process(_delta):
 		if _spawnTimer < SPAWN_INTERVAL: return
 		_spawnTimer -= SPAWN_INTERVAL  # subtract instead of reset, keeps it accurate
 		var data = spawn_queue.pop_front()
-		MinionsPool.put_minion_toGame(data.res, data.pos, 0)
+		#var on_spawn = Callable()
+		#var minion = basic_minion
+		#on_spawn = func(minion): minion.specific_HealthComponent.take_damage(12)
+		MinionsPool.put_minion_toGame(data.res, data.pos ) #, on_spawn)
 
 		
 func _on_timer_timeout():

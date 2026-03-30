@@ -23,5 +23,5 @@ func _on_timer_timeout():
 
 func spawn_minion():
 	var pos = get_random_screen_point()
-	MinionsPool.put_minion_toGame(minionRes,pos,0)
+	MinionsPool.put_minion_toGame(minionRes,pos)
 	

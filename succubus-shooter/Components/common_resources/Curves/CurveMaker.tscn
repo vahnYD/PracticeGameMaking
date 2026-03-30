@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://beter5pqvpemq"]
+
+[ext_resource type="Script" uid="uid://ce6tanke61ocx" path="res://Components/common_resources/Curves/curveMaker.gd" id="1_x1unt"]
+
+[sub_resource type="Curve" id="Curve_1qqol"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.6, 0.2), 1.1, 1.0988401, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="CurveMaker" type="Node2D" unique_id=1683079211]
+script = ExtResource("1_x1unt")
+curve = SubResource("Curve_1qqol")

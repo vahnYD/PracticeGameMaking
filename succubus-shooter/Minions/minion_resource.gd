@@ -13,6 +13,8 @@ extends Resource
 @export var lifeTime: float = 10.0
 @export var type: basic_types
 @export var move_type: global_enums.Minion_moveType = global_enums.Minion_moveType.basic
+@export var freeze_time: float = 0.0
+@export var moveDirOverride: Vector2 = Vector2.ZERO
 
 enum basic_power{
 	none,

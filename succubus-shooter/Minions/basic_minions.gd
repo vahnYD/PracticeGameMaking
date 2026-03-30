@@ -10,6 +10,8 @@ var specific_base_touchDamage: float = 0
 var specific_animationsFrames: SpriteFrames
 var specific_powers: Array[MinionResource.basic_power] = [MinionResource.basic_power.none]
 var specific_lifetime: float = 3.0
+var specific_movOverrideTimer: float = 0.0
+var specific_movement_override: Callable
 
 var specific_movementType: global_enums.Minion_moveType = global_enums.Minion_moveType.basic
 
@@ -33,35 +35,56 @@ var veer_chance: float = 0.7 # (70%)
 var veer_direction = Vector2.ZERO
 #endregion
 
+
+#region ifMovetypeIsFrozen
+var frozeTimer : float  = 0.0
+#endregion
+
+
+var actualMoveType: global_enums.Minion_moveType = global_enums.Minion_moveType.basic
+
 const blankMinionData: MinionResource = preload("res://Minions/blankMinionData.tres")
 
 signal returned_minion_to_pool(this_minion: Area2D)
 
 var isActivated: bool = false
 
-var initialHaste: float = 2.7
-var SpawnedFrom: int # -1 means spawned from the top, 0 means spawned from the Center, 1 means spawned from the Bottom
+var initialHaste: float
+var adjustStr: float # -1 means spawned from the top, 0 means spawned from the Center, 1 means spawned from the Bottom
 var screenCenter: Vector2
-
+var checktimer: float  = 1.0
 func _physics_process(delta):
-	movedir = -transform.x
-	if initialHaste > 0  and SpawnedFrom != 0:
-		initialHaste -= delta
-		goToCenter(delta)
+
 	match specific_movementType:
+		global_enums.Minion_moveType.basic:
+			movedir = -transform.x
 		global_enums.Minion_moveType.random:
 			randomMovement(delta)
-	
+		global_enums.Minion_moveType.frozen:
+			frozeTimer -= delta
+			if frozeTimer <= 0:
+				specific_movementType = actualMoveType
+			else:
+				movedir = Vector2.ZERO
+	if initialHaste > 0  and adjustStr != 0 and not specific_movement_override.is_valid():
+		initialHaste -= delta
+		goToCenter()
+	if specific_movement_override.is_valid():
+		if specific_movOverrideTimer > 0:
+			specific_movOverrideTimer-= delta
+			specific_movement_override.call(self, delta)
+
 	# Apply final movement
-	global_position += movedir.normalized() * specific_base_speed * delta
+	if movedir != Vector2.ZERO:
+		global_position += movedir.normalized() * specific_base_speed * delta
 	specific_lifetime -= delta
 	if specific_lifetime <= 0 and isActivated: 
 		minion_death()
 
-func goToCenter(delta):
-	veer_direction = global_position.direction_to(screenCenter) * 0.5
-	movedir += veer_direction
-
+func goToCenter():
+	#veer_direction = global_position.direction_to(screenCenter) * 0.2 * adjustStr
+	#movedir += veer_direction
+	movedir += Vector2(0,sign(global_position.y-screenCenter.y))
 
 func randomMovement(delta):
 		if veer_timer > 0:
@@ -77,11 +100,11 @@ func randomMovement(delta):
 
 func _ready():
 	screenCenter = GlobalScripts.max_ScreenSize / 2.0
-	if MinionData:
-		load_miniondata_from_resource(MinionData)
-		specific_animationPlay.play("default")
-		specific_playerDmgCollissionBox.disabled = false
-		HitBox.disabled = false
+	#if MinionData:
+		#load_miniondata_from_resource(MinionData)
+		#specific_animationPlay.play("default")
+		#specific_playerDmgCollissionBox.disabled = false
+		#HitBox.disabled = false
 
 
 func load_miniondata_from_resource(res: MinionResource):
@@ -99,6 +122,8 @@ func load_miniondata_from_resource(res: MinionResource):
 		specific_animationsFrames = res.animations
 		specific_animationPlay.sprite_frames = specific_animationsFrames
 		specific_movementType = res.move_type
+		frozeTimer = res.freeze_time
+		
 		if not res.base_MinionName == "Unknown":
 			specific_playerDmgCollissionBox.shape = res.collision_shape.duplicate()
 			HitBox.shape = res.collision_shape.duplicate()
@@ -139,14 +164,14 @@ func deactivate_minion() -> void:
 	returned_minion_to_pool.emit(self)
 
 
-func spawn(pos: Vector2, angle: float, _extraData: String = "") -> void:
+func spawn(pos: Vector2, movementOverride: Callable = Callable(), onSpawn: Callable = Callable()) -> void:
 	global_position = pos
-	if global_position.y < 96.0:
-		SpawnedFrom = -1
-	if global_position.y > (GlobalScripts.max_ScreenSize.y - 96.0):
-		SpawnedFrom = 1
-	initialHaste = 2.7
-	rotation = deg_to_rad(angle)
+	specific_movement_override = movementOverride
+	if global_position.y < 0:
+		adjustStr = global_position.y / 100.0 * -1
+	if global_position.y > GlobalScripts.max_ScreenSize.y :
+		adjustStr = (GlobalScripts.max_ScreenSize.y - global_position.y ) / 100 * -1
+	initialHaste = abs(adjustStr)
 	z_index = 2
 	specific_playerDmgCollissionBox.disabled = false
 	HitBox.disabled = false
@@ -157,6 +182,9 @@ func spawn(pos: Vector2, angle: float, _extraData: String = "") -> void:
 	var _this_tween: Tween = get_tree().create_tween()
 	_this_tween.tween_property(self,"modulate", Color.WHITE, 0.08)
 	isActivated = true
+	
+	if onSpawn.is_valid():
+		onSpawn.call(self)
 
 func _on_hitbox_component_area_entered(area):
 	if area.is_in_group("Bullet"):

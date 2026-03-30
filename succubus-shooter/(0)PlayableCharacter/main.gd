@@ -28,7 +28,7 @@ var HeartCount: int # Heart increase PowerBuff
 var main_bullet_Piercing_ON : bool = false
 
 signal HPChanged(newCurHP: float, newMaxHP: float)
-signal Death
+#signal Death
 
 const _BulletOffset: Array[Vector2] = [Vector2(-16,-64), Vector2(-16,64)]
 const acceleration: float = 5250
@@ -39,7 +39,6 @@ var TemporaryPowerupTimer : float = 1 #fully temprorary, lol
 var _shotDelay: float = 0
 func _ready():
 	playScreen = GlobalScripts.max_ScreenSize
-	
 	curHealth = MaxHealth
 	bulletSpawnPosition = BulletSpawnMarker.global_position
 

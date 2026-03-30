@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="WaveCurveData" format=3 uid="uid://dvh27f6t2v152"]
+
+[ext_resource type="Script" uid="uid://ce6tanke61ocx" path="res://Components/common_resources/Curves/curveMaker.gd" id="1_shd1i"]
+
+[sub_resource type="Curve" id="Curve_s87hf"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[resource]
+script = ExtResource("1_shd1i")
+curve_name = "ease"
+curve = SubResource("Curve_s87hf")
+metadata/_custom_type_script = "uid://ce6tanke61ocx"
