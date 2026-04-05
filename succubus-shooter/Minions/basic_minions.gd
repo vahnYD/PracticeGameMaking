@@ -13,7 +13,7 @@ var specific_lifetime: float = 3.0
 var specific_movOverrideTimer: float = 0.0
 var specific_movement_override: Callable
 
-var specific_movementType: global_enums.Minion_moveType = global_enums.Minion_moveType.basic
+var specific_movementType: GlobalEnums.Minion_moveType = GlobalEnums.Minion_moveType.basic
 
 @onready var specific_HitboxComponent : HitboxComponent = $HitboxComponent
 @onready var specific_animationPlay : AnimatedSprite2D = $AnimatedSprite
@@ -41,7 +41,7 @@ var frozeTimer : float  = 0.0
 #endregion
 
 
-var actualMoveType: global_enums.Minion_moveType = global_enums.Minion_moveType.basic
+var actualMoveType: GlobalEnums.Minion_moveType = GlobalEnums.Minion_moveType.basic
 
 const blankMinionData: MinionResource = preload("res://Minions/blankMinionData.tres")
 
@@ -56,11 +56,11 @@ var checktimer: float  = 1.0
 func _physics_process(delta):
 
 	match specific_movementType:
-		global_enums.Minion_moveType.basic:
+		GlobalEnums.Minion_moveType.basic:
 			movedir = -transform.x
-		global_enums.Minion_moveType.random:
+		GlobalEnums.Minion_moveType.random:
 			randomMovement(delta)
-		global_enums.Minion_moveType.frozen:
+		GlobalEnums.Minion_moveType.frozen:
 			frozeTimer -= delta
 			if frozeTimer <= 0:
 				specific_movementType = actualMoveType

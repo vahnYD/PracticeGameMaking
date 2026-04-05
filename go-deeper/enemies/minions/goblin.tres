@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="enemy_resources" format=3 uid="uid://bkmivdlt2yu3b"]
+
+[ext_resource type="Texture2D" uid="uid://ba6hlddn8m83k" path="res://assets/enemy/minions/Goblin.png" id="1_rfj7e"]
+[ext_resource type="Script" uid="uid://dijcvp5bqbs45" path="res://enemies/enemyRes.gd" id="1_uppk1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rfj7e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rfj7e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_uppk1")
+HP = 16.0
+mov_speed = 15.0
+ATK = 2.0
+enemy_name = "goblin"
+spawn_weight = 12.0
+collisionRadius = 158.0
+sprite_frames = SubResource("SpriteFrames_rfj7e")
+metadata/_custom_type_script = "uid://dijcvp5bqbs45"

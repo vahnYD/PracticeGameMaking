@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EnemyResources" format=3 uid="uid://bp81kmdrj8egk"]
+
+[ext_resource type="Script" uid="uid://cxxv4trw25okk" path="res://(2)Enemies/Enemy_Res.gd" id="1_23kb8"]
+[ext_resource type="Texture2D" uid="uid://b6e68ggjeo0a7" path="res://(0)Sprites/Enemies/Virus.png" id="2_3eamb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3eamb"]
+radius = 80.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_41wlj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3eamb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_23kb8")
+enemy_name = "Virus"
+sprite = SubResource("SpriteFrames_41wlj")
+collision_shape = SubResource("CircleShape2D_3eamb")
+metadata/_custom_type_script = "uid://cxxv4trw25okk"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SpawnParam" format=3 uid="uid://fp78sy54tpa8"]
+
+[ext_resource type="Script" uid="uid://cs5vuq4v60kfj" path="res://(5)EnemySpawners/Spawn_Param.gd" id="1_qrlc0"]
+
+[resource]
+script = ExtResource("1_qrlc0")
+enemy_name = "Miteo"
+spawn_interval = 0.22
+curve_name = "curve_ease"
+mov_override_dur = 0.0
+metadata/_custom_type_script = "uid://cs5vuq4v60kfj"

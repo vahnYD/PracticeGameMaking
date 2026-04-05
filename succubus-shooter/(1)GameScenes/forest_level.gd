@@ -54,14 +54,14 @@ func _process(delta):
 
 
 func SpawningPattern_basic(minion_name: String, spawnCount: int, moveVector: Vector2, 
-initialPos : Vector2 = Vector2.ZERO) -> SummonConfig:
+spawnBox_initialPos : Vector2 = Vector2.ZERO) -> SummonConfig:
 	var curParamSetup = SummonConfig.new()
 	curParamSetup.minionName = minion_name
 	curParamSetup.enemy_count = spawnCount
-	curParamSetup.initialMovVector = moveVector
-	curParamSetup.initialPos = initialPos
-	curParamSetup.summonInterval = 0.1333
-	curParamSetup.spawnerMoveSpeed = 450.0
+	curParamSetup.spawnBox_initialmoveVector = moveVector
+	curParamSetup.spawnBox_initialPos = spawnBox_initialPos
+	curParamSetup.summon_interval = 0.1333
+	curParamSetup.spawnBox_basicspeed = 450.0
 	
 	return curParamSetup
 	
@@ -70,12 +70,12 @@ curveFlip : bool = false, curveDur: float = 2.0) -> SummonConfig:
 	var curParamSetup = SummonConfig.new()
 	curParamSetup.minionName = minion_name
 	curParamSetup.enemy_count = spawnCount
-	curParamSetup.useBasicMovSet = false
-	curParamSetup.initialMovVector = moveXorY
-	curParamSetup.movementCurve = curvePattern
+	curParamSetup.use_basicmovesetting = false
+	curParamSetup.spawnBox_initialmoveVector = moveXorY
+	curParamSetup.wave_curve_data = curvePattern
 	curParamSetup.movCurveFlip = curveFlip
 	curParamSetup.WaveCurveDuration = curveDur
-	curParamSetup.summonInterval = 0.1333
+	curParamSetup.summon_interval = 0.1333
 
 	return curParamSetup
 	
@@ -85,18 +85,18 @@ spinDir : int)-> SummonConfig:
 	curParamSetup.minionName = minion_name
 	curParamSetup.enemy_count = spawnCount
 	curParamSetup.isSpin = spinDir
-	curParamSetup.initialPos = radius
-	curParamSetup.summonInterval = 0.1
-	curParamSetup.spinSpeed = 250.0
+	curParamSetup.spawnBox_initialPos = radius
+	curParamSetup.summon_interval = 0.1
+	curParamSetup.spin_speed = 250.0
 	return curParamSetup
 
 func BasicSpawning(startPos: Vector2, config : SummonConfig):
 	var activeSpawnerInstance = grabSpawner()
 	activeSpawnerInstance.global_position = startPos
-	activeSpawnerInstance.SummonEnemy_call(config, global_enums.Minion_SpawnType.basic)
+	activeSpawnerInstance.SummonEnemy_call(config, GlobalEnums.Minion_SpawnType.basic)
 
 func SpinningSpawning(startPos: Vector2 , config : SummonConfig):
 	var activeSpawnerInstance = grabSpawner()
 	activeSpawnerInstance.global_position = startPos
-	activeSpawnerInstance.SummonEnemy_call(config, global_enums.Minion_SpawnType.spinning)
+	activeSpawnerInstance.SummonEnemy_call(config, GlobalEnums.Minion_SpawnType.spinning)
 	

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="EnemyResources" format=3 uid="uid://cwplwg26vbkrh"]
+
+[ext_resource type="Script" uid="uid://cxxv4trw25okk" path="res://(2)Enemies/Enemy_Res.gd" id="1_1nbp0"]
+[ext_resource type="Texture2D" uid="uid://doucor8k8aaxt" path="res://(0)Sprites/Enemies/Miteo.png" id="2_2kpn7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ssap0"]
+radius = 138.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1omaa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2kpn7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_1nbp0")
+enemy_name = "Miteo"
+HP = 33.0
+ATK = 3.0
+move_spd = 160.0
+move_type = 2
+sprite = SubResource("SpriteFrames_1omaa")
+collision_shape = SubResource("CircleShape2D_ssap0")
+metadata/_custom_type_script = "uid://cxxv4trw25okk"

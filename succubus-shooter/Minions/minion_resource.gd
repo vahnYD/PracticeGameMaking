@@ -12,7 +12,7 @@ extends Resource
 @export var powers: Array[basic_power] = [basic_power.none]
 @export var lifeTime: float = 10.0
 @export var type: basic_types
-@export var move_type: global_enums.Minion_moveType = global_enums.Minion_moveType.basic
+@export var move_type: GlobalEnums.Minion_moveType = GlobalEnums.Minion_moveType.basic
 @export var freeze_time: float = 0.0
 @export var moveDirOverride: Vector2 = Vector2.ZERO
 

@@ -7,12 +7,12 @@ var minionRes : Array[MinionResource]
 var minion_dict: Dictionary = {}
 
 var SummonTimer: float
-var WaveSpeed : float = 0.0
-var SpinSpeed : float = 0
-var useBasicWave: bool
+var spawnBox_basicspeed : float = 0.0
+var spin_speed : float = 0
+var use_basicmovesetting: bool
 
 #region useCurveForSpawn
-var waveCurveDataUsed: WaveCurveData
+var wave_curve_data: WaveCurveData
 var CurveUsed: Curve
 var elapsedTime: float = 0.0
 var curveProgress: float
@@ -24,18 +24,18 @@ var curveFlip: bool = false
 
 #endregion
 func set_curve(curve: WaveCurveData, New_cycleDur: float = 0.0):
-	waveCurveDataUsed = curve
-	CurveUsed = waveCurveDataUsed.curve
+	wave_curve_data = curve
+	CurveUsed = wave_curve_data.curve
 	elapsedTime = 0.0
 	curveProgress = 0.0
-	curveCycleDur = waveCurveDataUsed.initial_cycleDuration
+	curveCycleDur = wave_curve_data.initial_cycleDuration
 	if New_cycleDur > 0.0:
 		curveCycleDur = New_cycleDur
 
 var spawnerName: String
 
 var spawn_queue = []
-var SPAWN_INTERVAL: float = 0.05
+var summon_interval: float = 0.05
 
 var waveTop : float = 256.0
 var waveBot : float = -256.0
@@ -46,7 +46,7 @@ var isSpinning: bool = false
 var spinDir : int
 # Dir = direction. 1 : spin clockwise (from right to bottom) -1 reverse that.
 
-var Spawner_MoveDir : Vector2 = Vector2(0,0)
+var spawnBox_initialmoveVector : Vector2 = Vector2(0,0)
 
 var on_spawn = Callable()
 var minion_MoveDirOverride : Callable
@@ -55,7 +55,7 @@ var distance : float = 0
 var minion_Freeze: float = 0.0
 
 
-@onready var iBox : Sprite2D = $IndicatorBox
+@onready var spawnBox : Sprite2D = $IndicatorBox
 
 
 var curSpawnType : global_enums.Minion_SpawnType
@@ -76,25 +76,25 @@ func get_minion_by_name(target_name: String) -> MinionResource:
 
 
 func _process(delta):
-	if useBasicWave:
+	if use_basicmovesetting:
 		if RightLeft:
-			if iBox.position.x >= waveTop  : #if hitting Right, or never reached scene
-				Spawner_MoveDir.x = -1 # go left
-			elif  iBox.position.x <= waveBot  or iBox.global_position.x < 0: #if hitting Left
-				Spawner_MoveDir.x = 1 # go right
+			if spawnBox.position.x >= waveTop  : #if hitting Right, or never reached scene
+				spawnBox_initialmoveVector.x = -1 # go left
+			elif  spawnBox.position.x <= waveBot  or spawnBox.global_position.x < 0: #if hitting Left
+				spawnBox_initialmoveVector.x = 1 # go right
 
 		if UpDown:
-			if iBox.position.y >= waveTop  or iBox.global_position.y > GlobalScripts.max_ScreenSize.y - 32 : #if hitting top, remember, y pos is flipped.
-				Spawner_MoveDir.y = -1 # go up
-			elif  iBox.position.y <= waveBot or iBox.global_position.y < 32.0: #if hitting bottom
-				Spawner_MoveDir.y = 1 # go down
-		iBox.position += Spawner_MoveDir.normalized() * delta * WaveSpeed
+			if spawnBox.position.y >= waveTop  or spawnBox.global_position.y > GlobalScripts.max_ScreenSize.y - 32 : #if hitting top, remember, y pos is flipped.
+				spawnBox_initialmoveVector.y = -1 # go up
+			elif  spawnBox.position.y <= waveBot or spawnBox.global_position.y < 32.0: #if hitting bottom
+				spawnBox_initialmoveVector.y = 1 # go down
+		spawnBox.position += spawnBox_initialmoveVector.normalized() * delta * spawnBox_basicspeed
 
-	elif useBasicWave == false and waveCurveDataUsed != null:
+	elif use_basicmovesetting == false and wave_curve_data != null:
 		elapsedTime += delta
-		if waveCurveDataUsed.initial_readType == waveCurveDataUsed.readtype.pingpong:
+		if wave_curve_data.initial_readType == wave_curve_data.readtype.pingpong:
 			curveProgress = pingpong(elapsedTime, curveCycleDur) / curveCycleDur
-		elif waveCurveDataUsed.initial_readType == waveCurveDataUsed.readtype.fmod:
+		elif wave_curve_data.initial_readType == wave_curve_data.readtype.fmod:
 			curveProgress = fmod(elapsedTime, curveCycleDur) / curveCycleDur
 		# sample the curve (0→1 output)
 		curCurveValue = CurveUsed.sample(curveProgress)
@@ -102,19 +102,19 @@ func _process(delta):
 			curCurveValue = 1.0 - curCurveValue
 		# remap 0→1 to WaveBot→WaveTop
 		if UpDown:
-			iBox.position.y = lerp(waveBot, waveTop, curCurveValue)
+			spawnBox.position.y = lerp(waveBot, waveTop, curCurveValue)
 		if RightLeft:
-			iBox.position.x = clamp(lerp(waveBot, waveTop, curCurveValue),32.0,GlobalScripts.max_ScreenSize.x + 200.0)
+			spawnBox.position.x = clamp(lerp(waveBot, waveTop, curCurveValue),32.0,GlobalScripts.max_ScreenSize.x + 200.0)
 		
 		
 	if isSpinning:
-		rotation_degrees += delta * SpinSpeed * spinDir
+		rotation_degrees += delta * spin_speed * spinDir
 	
 	if spawn_queue.size() > 0:
 		show()
 		SummonTimer += delta
-		if SummonTimer < SPAWN_INTERVAL: return
-		SummonTimer -= SPAWN_INTERVAL 
+		if SummonTimer < summon_interval: return
+		SummonTimer -= summon_interval 
 		match curSpawnType:
 			global_enums.Minion_SpawnType.basic:
 				spawnMinion_normal()
@@ -127,7 +127,7 @@ func _process(delta):
 
 func spawnMinion_normal():
 	var data = spawn_queue.pop_front() as MinionResource
-	MinionsPool.put_minion_toGame(data, iBox.global_position)
+	MinionsPool.put_minion_toGame(data, spawnBox.global_position)
 
 func spawnMinion_chasingPlayer(chaseDuration: float):
 	var data = spawn_queue.pop_front() as MinionResource
@@ -136,7 +136,7 @@ func spawnMinion_chasingPlayer(chaseDuration: float):
 		_dirChange(minion_referenced, getDir)
 	on_spawn = func(minion_ref : basic_minion) :
 		changeOverrideTimer(minion_ref,chaseDuration)
-	MinionsPool.put_minion_toGame(data, iBox.global_position, on_spawn, minion_MoveDirOverride)
+	MinionsPool.put_minion_toGame(data, spawnBox.global_position, on_spawn, minion_MoveDirOverride)
 
 func spawnMinion_spinning(movDirOverrideDuration : float):
 	var data = spawn_queue.pop_front() as MinionResource
@@ -145,28 +145,28 @@ func spawnMinion_spinning(movDirOverrideDuration : float):
 		_dirChange(minion_referenced, getDir)
 	on_spawn = func(minion_ref : basic_minion) :
 		changeOverrideTimer(minion_ref,movDirOverrideDuration)
-	MinionsPool.put_minion_toGame(data, iBox.global_position, on_spawn, minion_MoveDirOverride)
+	MinionsPool.put_minion_toGame(data, spawnBox.global_position, on_spawn, minion_MoveDirOverride)
 
 func _dirChange(minion: basic_minion, newDir: Vector2):
 	minion.movedir = newDir
 
 func SummonEnemy_call(minSpawnParam: SummonConfig, spawnType: global_enums.Minion_SpawnType):
 	curSpawnType = spawnType
-	SPAWN_INTERVAL = minSpawnParam.summonInterval
-	waveCurveDataUsed = minSpawnParam.movementCurve
-	useBasicWave = minSpawnParam.useBasicMovSet
-	if useBasicWave == true:
-		WaveSpeed = minSpawnParam.spawnerMoveSpeed
-	elif useBasicWave == false:
-		elapsedTime = curveCycleDur * minSpawnParam.start_at
+	summon_interval = minSpawnParam.summon_interval
+	wave_curve_data = minSpawnParam.wave_curve_data
+	use_basicmovesetting = minSpawnParam.use_basicmovesetting
+	if use_basicmovesetting == true:
+		spawnBox_basicspeed = minSpawnParam.spawnBox_basicspeed
+	elif use_basicmovesetting == false:
+		elapsedTime = curveCycleDur * minSpawnParam.Curve_startAt
 		curveFlip = minSpawnParam.movCurveFlip
-		set_curve(minSpawnParam.movementCurve, minSpawnParam.WaveCurveDuration)
+		set_curve(minSpawnParam.wave_curve_data, minSpawnParam.WaveCurveDuration)
 		
-	if minSpawnParam.initialMovVector.x != 0:
+	if minSpawnParam.spawnBox_initialmoveVector.x != 0:
 		RightLeft = true
 	else:
 		RightLeft = false
-	if  minSpawnParam.initialMovVector.y != 0:
+	if  minSpawnParam.spawnBox_initialmoveVector.y != 0:
 		UpDown = true
 	else:
 		UpDown = false
@@ -174,13 +174,13 @@ func SummonEnemy_call(minSpawnParam: SummonConfig, spawnType: global_enums.Minio
 		isSpinning = true
 	else:
 		isSpinning = false
-	SpinSpeed = minSpawnParam.spinSpeed
-	iBox.position = minSpawnParam.initialPos
-	Spawner_MoveDir = minSpawnParam.initialMovVector
-	minion_MoveDirOverride = minSpawnParam.movDirOverride
+	spin_speed = minSpawnParam.spin_speed
+	spawnBox.position = minSpawnParam.spawnBox_initialPos
+	spawnBox_initialmoveVector = minSpawnParam.spawnBox_initialmoveVector
+	minion_MoveDirOverride = minSpawnParam.minion_MoveDirOverride
 	spinDir = minSpawnParam.isSpin
-	waveTop = minSpawnParam.waveSize
-	waveBot = - minSpawnParam.waveSize
+	waveTop = minSpawnParam.wave_size
+	waveBot = - minSpawnParam.wave_size
 	minion_Freeze = minSpawnParam.freezeTime
 	for i in range(minSpawnParam.enemy_count):
 		spawn_queue.append(get_minion_by_name(minSpawnParam.minionName))
@@ -193,11 +193,11 @@ func changeOverrideTimer(minion: basic_minion, duration: float):
 	minion.specific_movOverrideTimer = duration
 
 func _seekPlayer() -> Vector2:
-	return iBox.global_position.direction_to(Player.global_position) 
+	return spawnBox.global_position.direction_to(Player.global_position) 
 	
 func _getRotationAngle() -> Vector2:
 	if isSpinning:
-		return -iBox.global_position.direction_to(self.global_position)
+		return -spawnBox.global_position.direction_to(self.global_position)
 	else:
 		return Vector2.ZERO
 

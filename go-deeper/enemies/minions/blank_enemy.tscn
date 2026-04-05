@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://ho8artjjo81u"]
+
+[ext_resource type="Script" uid="uid://de26f41ygsn7d" path="res://enemies/minions/enemy.gd" id="1_qtm1b"]
+[ext_resource type="Texture2D" uid="uid://dxho88o3c23s5" path="res://assets/enemy/minions/Slime.png" id="2_qjquh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3sd51"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qjquh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p6xtx"]
+radius = 123.0
+
+[node name="blankEnemy" type="Area2D" unique_id=38265758]
+scale = Vector2(0.333, 0.333)
+script = ExtResource("1_qtm1b")
+
+[node name="Sprites" type="AnimatedSprite2D" parent="." unique_id=396222856]
+scale = Vector2(0.335, 0.4)
+sprite_frames = SubResource("SpriteFrames_3sd51")
+offset = Vector2(0, -128)
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=2052692808]
+shape = SubResource("CircleShape2D_p6xtx")
+
+[node name="checkTimer" type="Timer" parent="." unique_id=1460607083]
+wait_time = 0.09
+
+[connection signal="timeout" from="checkTimer" to="." method="_on_check_timer_timeout"]

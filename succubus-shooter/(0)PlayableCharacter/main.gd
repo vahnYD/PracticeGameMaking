@@ -11,9 +11,12 @@ var bulletSpawnPosition: Vector2
 
 @export var chara_name: String
 @export var ATK: float
-@export var MaxHealth: float
-
-var curHealth : float
+@export var Max_HP: float
+var cur_HP : float:
+	get:
+		return cur_HP
+	set(value):
+		cur_HP = clamp(value,0,999)
 
 @export var DEF: float
 @export var DmgMitigationCurve: Curve
@@ -31,7 +34,7 @@ signal HPChanged(newCurHP: float, newMaxHP: float)
 #signal Death
 
 const _BulletOffset: Array[Vector2] = [Vector2(-16,-64), Vector2(-16,64)]
-const acceleration: float = 5250
+const acceleration: float = 5000
 
 
 var _Movement_direction : Vector2
@@ -39,7 +42,7 @@ var TemporaryPowerupTimer : float = 1 #fully temprorary, lol
 var _shotDelay: float = 0
 func _ready():
 	playScreen = GlobalScripts.max_ScreenSize
-	curHealth = MaxHealth
+	cur_HP = Max_HP
 	bulletSpawnPosition = BulletSpawnMarker.global_position
 
 	#print("render_resolution : "+ str(GlobalScripts.render_resolution))
@@ -56,16 +59,19 @@ func MovingAnimation():
 	pass
 	
 	if velocity.x > 120:
+		WingsSprite.rotation_degrees = -11.2
 		if Input.is_action_pressed("attack"):
 			BodySprite.play("attack_forward")
 		else:
 			BodySprite.play("go_forward")
 	elif velocity.x < -120:
+		WingsSprite.rotation_degrees = -30
 		if Input.is_action_pressed("attack"):
 			BodySprite.play("attack_back")
 		else:
 			BodySprite.play("go_back")
 	else :
+		WingsSprite.rotation_degrees = -11.2
 		if Input.is_action_pressed("attack"):
 			BodySprite.play("attack_back")
 		else:
@@ -73,7 +79,7 @@ func MovingAnimation():
 	
 
 func _physics_process(delta):
-	if curHealth <= 0:
+	if cur_HP <= 0:
 		return
 	_Movement_direction = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 	bulletSpawnPosition = BulletSpawnMarker.global_position
@@ -83,7 +89,7 @@ func _physics_process(delta):
 
 
 func _process(delta):
-	if curHealth <= 0:
+	if cur_HP <= 0:
 		return
 	MovingAnimation()
 	_shotDelay += delta
@@ -113,7 +119,6 @@ func shot_bullet(bullet_name: String, bullet_pos: Vector2, bullet_angle: float, 
 	if bullet_name == "basic big":
 		BulletPool.put_bullet_toGame("basic big", bullet_pos, bullet_angle, Dmg, func(b: Bullet):
 			if main_bullet_Piercing_ON and b.specific_ability != BulletResource.Ability_list.WeakPiercing:
-				#print("huh")
 				b.specific_ability = BulletResource.Ability_list.WeakPiercing
 				b.specific_weakPiercingDmgDropoff = 30.0
 				b.modulate = Color.WHITE.lerp(Color.DEEP_PINK, 0.4) )
@@ -188,12 +193,12 @@ func shotPattern_lv6():
 
 
 func takeDamage(dmgValue: float):
-	if curHealth <= dmgValue:
-		curHealth = 0
+	if cur_HP <= dmgValue:
+		cur_HP = 0
 		death()
 	else:
-		curHealth -= dmgValue
-	HPChanged.emit(curHealth, MaxHealth)
+		cur_HP -= dmgValue
+	HPChanged.emit(cur_HP, Max_HP)
 
 func death():
 	BodySprite.play("death")

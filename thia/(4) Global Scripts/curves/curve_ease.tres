@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CurveData" format=3 uid="uid://cpjs2aphlwi06"]
+
+[ext_resource type="Script" uid="uid://bc2k1dns4bcyv" path="res://(5)EnemySpawners/Curve_Data.gd" id="1_kbp4t"]
+
+[sub_resource type="Curve" id="Curve_kbp4t"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[resource]
+script = ExtResource("1_kbp4t")
+curve_shape = SubResource("Curve_kbp4t")
+curve_type = 1
+curve_name = "curve_ease"
+metadata/_custom_type_script = "uid://bc2k1dns4bcyv"

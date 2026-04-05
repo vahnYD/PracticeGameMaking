@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://btegjyyv038op"]
+
+[ext_resource type="Texture2D" uid="uid://b6e68ggjeo0a7" path="res://(0)Sprites/Enemies/Virus.png" id="1_7uiai"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ibrnp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7uiai")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_opju4"]
+radius = 80.0
+
+[node name="Virus" type="Area2D" unique_id=72275762]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2042335202]
+sprite_frames = SubResource("SpriteFrames_ibrnp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=967414426]
+shape = SubResource("CircleShape2D_opju4")

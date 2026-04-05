@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dxwvcauiog6ec"]
+
+[ext_resource type="Texture2D" uid="uid://dttiv5f6cwq1b" path="res://2309-w064-n002-758B-p1-758.jpg" id="1_2bxmu"]
+[ext_resource type="Script" uid="uid://djjv18aq0502i" path="res://GameScene/level_scene.gd" id="1_vrk01"]
+[ext_resource type="Script" uid="uid://cxxv4trw25okk" path="res://(2)Enemies/Enemy_Res.gd" id="2_2olkc"]
+[ext_resource type="PackedScene" uid="uid://db4jsdmudvx52" path="res://(1)PlayerCharacter/player.tscn" id="2_f2s4b"]
+[ext_resource type="Resource" uid="uid://cwplwg26vbkrh" path="res://(2)Enemies/enemy resources/Miteo.tres" id="3_fcva7"]
+[ext_resource type="Resource" uid="uid://bp81kmdrj8egk" path="res://(2)Enemies/enemy resources/Virus.tres" id="4_quj40"]
+[ext_resource type="PackedScene" uid="uid://tu4etcl2cjrg" path="res://GameScene/enemy_container.tscn" id="5_bh12j"]
+[ext_resource type="Script" uid="uid://brutpfou8uqvg" path="res://GameScene/gameplay_tracker.gd" id="5_by4cb"]
+[ext_resource type="Script" uid="uid://bl8kb5k3ltqyw" path="res://GameScene/bg_pic.gd" id="7_hok3w"]
+[ext_resource type="Texture2D" uid="uid://ctg82ahijgqod" path="res://icon.svg" id="8_fcva7"]
+[ext_resource type="PackedScene" uid="uid://bkt7ggqngkfn4" path="res://(5)EnemySpawners/enemy_spawner_box.tscn" id="9_quj40"]
+
+[node name="level_Cave" type="Node2D" unique_id=951068427]
+script = ExtResource("1_vrk01")
+curlevel_Enemies = Array[ExtResource("2_2olkc")]([ExtResource("3_fcva7"), ExtResource("4_quj40")])
+
+[node name="gameplayTracker" type="Node2D" parent="." unique_id=897800560]
+script = ExtResource("5_by4cb")
+
+[node name="BGPic" type="Sprite2D" parent="gameplayTracker" unique_id=214861167]
+position = Vector2(3112, 1119)
+texture = ExtResource("1_2bxmu")
+script = ExtResource("7_hok3w")
+
+[node name="enemyContainer" parent="gameplayTracker" unique_id=599700360 instance=ExtResource("5_bh12j")]
+
+[node name="EnemySpawner" parent="gameplayTracker/enemyContainer" unique_id=1391149849 instance=ExtResource("9_quj40")]
+z_index = 1
+position = Vector2(4308, 1100)
+enemy_name = "Miteo"
+amount = 44
+spawn_interval = 0.25
+curve_flip = true
+curve_waveLength = 183.0
+curve_dur = 1.5
+
+[node name="EnemySpawner2" parent="gameplayTracker/enemyContainer" unique_id=1219181759 instance=ExtResource("9_quj40")]
+position = Vector2(3551, 1413)
+mov_override_name = "seek"
+mov_override_dur = 3.2
+
+[node name="Player" parent="." unique_id=837101679 instance=ExtResource("2_f2s4b")]
+z_index = 3
+position = Vector2(357, 1120)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1781606604]
+visible = false
+position = Vector2(3640, 1180)
+texture = ExtResource("8_fcva7")

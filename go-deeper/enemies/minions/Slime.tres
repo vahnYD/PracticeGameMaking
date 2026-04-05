@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="enemy_resources" format=3 uid="uid://nxllofwjyf28"]
+
+[ext_resource type="Texture2D" uid="uid://dxho88o3c23s5" path="res://assets/enemy/minions/Slime.png" id="1_2vhip"]
+[ext_resource type="Script" uid="uid://dijcvp5bqbs45" path="res://enemies/enemyRes.gd" id="1_mky06"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2vhip"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2vhip")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_mky06")
+HP = 24.0
+mov_speed = 12.0
+ATK = 3.5
+enemy_name = "slime"
+spawn_weight = 22.0
+collisionRadius = 137.0
+sprite_frames = SubResource("SpriteFrames_2vhip")
+metadata/_custom_type_script = "uid://dijcvp5bqbs45"

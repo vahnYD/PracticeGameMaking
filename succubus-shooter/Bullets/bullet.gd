@@ -61,7 +61,6 @@ func load_from_resource(res: BulletResource):
 	
 	
 
-
 func bullet_Hit(touch: Area2D):
 	if touch.is_in_group("Enemy"):
 		match specific_ability:

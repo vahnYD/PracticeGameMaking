@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://ni2p5l687o6n"]
+
+[ext_resource type="Texture2D" uid="uid://231a24mu34qv" path="res://assets/BG/BG1.png" id="1_6se8w"]
+[ext_resource type="Script" uid="uid://5wydto34wiih" path="res://gameLevels/level_1.gd" id="1_lyhh1"]
+[ext_resource type="Script" uid="uid://dijcvp5bqbs45" path="res://enemies/enemyRes.gd" id="2_6x284"]
+[ext_resource type="Resource" uid="uid://bkmivdlt2yu3b" path="res://enemies/minions/goblin.tres" id="3_vjfuk"]
+[ext_resource type="Texture2D" uid="uid://0vreqgtph0mb" path="res://assets/Box.png" id="4_bh74n"]
+[ext_resource type="PackedScene" uid="uid://dqjof0diu06rd" path="res://managers/gameplayComponent.tscn" id="4_lyhh1"]
+[ext_resource type="Resource" uid="uid://nxllofwjyf28" path="res://enemies/minions/Slime.tres" id="4_pa730"]
+
+[node name="level_1" type="Node2D" unique_id=1105478152]
+script = ExtResource("1_lyhh1")
+curLevel_enemy_resources = Array[ExtResource("2_6x284")]([ExtResource("4_pa730"), ExtResource("3_vjfuk")])
+
+[node name="GameplayComponent" parent="." unique_id=641689810 instance=ExtResource("4_lyhh1")]
+
+[node name="BgPic" type="Sprite2D" parent="." unique_id=219199009]
+position = Vector2(-132, -136)
+scale = Vector2(0.5662038, 0.5662037)
+texture = ExtResource("1_6se8w")
+centered = false
+
+[node name="initAtkSpot" type="Sprite2D" parent="." unique_id=597434749]
+position = Vector2(939, 1030)
+scale = Vector2(3, 3)
+texture = ExtResource("4_bh74n")
+
+[node name="initSpawnSpots" type="Sprite2D" parent="." unique_id=1133055224 groups=["spawnSpot"]]
+self_modulate = Color(0.66, 0, 0.22000012, 1)
+position = Vector2(367, 278)
+scale = Vector2(3, 3)
+texture = ExtResource("4_bh74n")
+
+[node name="initSpawnSpots2" type="Sprite2D" parent="." unique_id=883037758 groups=["spawnSpot"]]
+self_modulate = Color(0.66, 0, 0.22000012, 1)
+position = Vector2(889, 262)
+scale = Vector2(3, 3)
+texture = ExtResource("4_bh74n")
+
+[node name="initSpawnSpots3" type="Sprite2D" parent="." unique_id=1487148594 groups=["spawnSpot"]]
+self_modulate = Color(0.66, 0, 0.22000012, 1)
+position = Vector2(1387, 317)
+scale = Vector2(3, 3)
+texture = ExtResource("4_bh74n")

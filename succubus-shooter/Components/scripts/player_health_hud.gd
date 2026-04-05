@@ -13,7 +13,7 @@ func _ready():
 func getPlayerData():
 	Player = get_tree().get_nodes_in_group("thePlayer")[0]
 	if Player:
-		initialSetHP(Player.curHealth , Player.MaxHealth )
+		initialSetHP(Player.cur_HP , Player.Max_HP )
 		Player.HPChanged.connect(HPChange)
 		
 func initialSetHP(_curHP: float, _maxHP: float):
@@ -23,4 +23,3 @@ func initialSetHP(_curHP: float, _maxHP: float):
 
 func HPChange(newCurHP : float, newMaxHP: float):
 	_HPBar.value = abs(newCurHP/maxHP) * 100
-	#print(abs(newCurHP/maxHP) * 100)

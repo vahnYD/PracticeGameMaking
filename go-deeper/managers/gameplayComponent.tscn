@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dqjof0diu06rd"]
+
+[ext_resource type="Script" uid="uid://d1kbvkdvcp7he" path="res://managers/gameplayManager.gd" id="1_dj4t4"]
+[ext_resource type="PackedScene" uid="uid://sna3ixbrgojs" path="res://managers/enemy_pool.tscn" id="2_l0k6m"]
+
+[node name="GameplayComponent" type="Node" unique_id=641689810]
+script = ExtResource("1_dj4t4")
+
+[node name="EnemyPool" parent="." unique_id=1097873177 instance=ExtResource("2_l0k6m")]
+
+[node name="minuteTimer" type="Timer" parent="." unique_id=1100434090]
+wait_time = 60.0
+autostart = true
+
+[node name="spawnTimer" type="Timer" parent="." unique_id=1556785806]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="minuteTimer" to="." method="_on_minute_timer_timeout"]
+[connection signal="timeout" from="spawnTimer" to="." method="_on_spawn_timer_timeout"]

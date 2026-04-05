@@ -9,7 +9,8 @@ enum Minion_moveType{
 	zigzag,
 	homing,
 	haste,
-	OVERRIDE
+	OVERRIDE,
+	Miniboss
 }
 
 enum Minion_SpawnType{

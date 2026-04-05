@@ -26,8 +26,6 @@ enum Ability_list{
 	Lifesteal
 }
 
-
-
 # ==========================================
 # ABILITY SPECIFIC STATS
 # Note: Keep the prefixes strictly matching the names in _validate_property!

@@ -3,7 +3,7 @@ extends Node2D
 @export var minion_res: MinionResource
 var spawn_queue = []
 var _spawnTimer: float = 0.0
-var SPAWN_INTERVAL: float = 0.05
+var summon_interval: float = 0.05
 
 var screen_size :Vector2 
 var margin :float = 128.0
@@ -77,8 +77,8 @@ func spawn_enemies_in_random_zone(enemy_count: int):
 func _process(_delta):
 	if spawn_queue.size() > 0:
 		_spawnTimer += _delta
-		if _spawnTimer < SPAWN_INTERVAL: return
-		_spawnTimer -= SPAWN_INTERVAL  # subtract instead of reset, keeps it accurate
+		if _spawnTimer < summon_interval: return
+		_spawnTimer -= summon_interval  # subtract instead of reset, keeps it accurate
 		var data = spawn_queue.pop_front()
 		#var on_spawn = Callable()
 		#var minion = basic_minion
