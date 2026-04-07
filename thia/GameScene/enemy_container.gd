@@ -23,7 +23,7 @@ func grab_spawners():
 		if enemy_spawner is EnemySpawnerBox:
 			enemy_spawner.get_enemy_data.connect(send_enemy_data)
 			enemy_spawner.slide_speed = spawner_slide_speed
-			enemy_spawner.gameStart = true
+			enemy_spawner.start_game()
 			enemy_spawner.homingTarget = Player
 			spawner_list.append(enemy_spawner)
 
@@ -45,19 +45,30 @@ func build_curLevel_dict(_enemy_list: Array[EnemyResources], _level_Dif: float):
 func upgrade_dict(_enemy_name: String, _newStats: EnemyScaledData):	
 	enemy_dict[_enemy_name] = _newStats
 	
-func send_enemy_data(_spawner: EnemySpawnerBox, _enemy_name: String, _move_override: Callable = Callable(), _move_overrideDur: float = 0.0) :
-	var data:= EnemyScaledData.new()
-	data = enemy_dict[_enemy_name]
+func send_enemy_data(_spawner: EnemySpawnerBox, _enemy_name: String, _onSpawnFunc: Callable = Callable(),
+ _move_override: Callable = Callable(), _move_overrideDur: float = 0.0 , _override_VeerStr : float = 0.0) :
+	
+	var source: EnemyScaledData = enemy_dict[_enemy_name]
+	var data := EnemyScaledData.new()
+	
+	# Copy all base stats from the dict
+	data.enemy_name = source.enemy_name
+	data.HP = source.HP
+	data.ATK = source.ATK
+	data.DEF = source.DEF
+	data.move_spd = source.move_spd
+	data.move_type = source.move_type
+	data.is_special = source.is_special
+	data.sprite = source.sprite
+	data.collision_shape = source.collision_shape
+	data.player_target = source.player_target
+	
+	# Then apply spawner-specific overrides
+	data.onSpawnFunc = _onSpawnFunc
 	data.move_Override = _move_override
 	data.move_overrideDur = _move_overrideDur
+	data.override_VeerStr = _override_VeerStr
+	
 	_spawner.cur_enemy_data = data
 	_spawner.activate_spawner()
-	
-#func spawn_enemies_basic(_enemy_name: String, _amount: int, _interval: float, _curve_name: String, _spawn_pos: Vector2):
-	#var activeSpawner : EnemySpawnerBox = spawner_list.pop_back()
-	#activeSpawner.global_position = _spawn_pos
-	#activeSpawner.activate_spawner(_curve_name)
-	#for i in range(_amount):
-		#await get_tree().create_timer(_interval).timeout
-		#EnemyPool.put_enemy_toGame(enemy_dict[_enemy_name],activeSpawner.enemy_spawnPos)
 	

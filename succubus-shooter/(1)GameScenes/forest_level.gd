@@ -50,7 +50,7 @@ func _process(delta):
 		#var curveData = get_curve_byname("ease")
 		#BasicSpawning(CommonSpawnPos[1].global_position,SpawningPattern_useCurve("Igeon", 55,curveData,Vector2(0,1), true,1.2))
 		SpinningSpawning(CommonSpawnPos[1].global_position,
-		SpawningPattern_spin("Igeon", 55, Vector2(0,-256), -1))
+		SpawningPattern_spin("Igeon", 111, Vector2(0,-256), -1))
 
 
 func SpawningPattern_basic(minion_name: String, spawnCount: int, moveVector: Vector2, 

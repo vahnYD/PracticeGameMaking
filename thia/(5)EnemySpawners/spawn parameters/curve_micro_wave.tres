@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SpawnParam" format=3 uid="uid://fp78sy54tpa8"]
+
+[ext_resource type="Curve" uid="uid://dmiq2v4gbclxv" path="res://(9) Others/Curves/linear.tres" id="1_xrals"]
+[ext_resource type="Script" uid="uid://cs5vuq4v60kfj" path="res://(5)EnemySpawners/Spawn_Param.gd" id="2_oaw5i"]
+
+[resource]
+script = ExtResource("2_oaw5i")
+staticTime = 0.0
+enemy_name = "Virus"
+enemy_amount = 6
+spawn_interval = 0.35
+curve_used = ExtResource("1_xrals")
+curve_dur = 4.0
+metadata/_custom_type_script = "uid://cs5vuq4v60kfj"

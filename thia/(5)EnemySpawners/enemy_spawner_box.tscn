@@ -2,23 +2,22 @@
 
 [ext_resource type="Texture2D" uid="uid://dv8vxha67p1sl" path="res://(0)Sprites/basic/Box.png" id="1_njy4x"]
 [ext_resource type="Script" uid="uid://cmm8fxubbpa7q" path="res://(5)EnemySpawners/Enemy_Spawner_Box.gd" id="1_y88we"]
-[ext_resource type="Curve" uid="uid://bqdj6vs0tex4f" path="res://(9) Others/Curves/ease.tres" id="2_e8uoh"]
 
 [node name="EnemySpawner" type="Node2D" unique_id=1219181759]
 script = ExtResource("1_y88we")
-enemy_name = "Virus"
-amount = 22
-cur_curve = ExtResource("2_e8uoh")
-mov_override_name = "freeze"
-mov_override_dur = 1.1
+enemy_amount = null
+spin_initPos = Vector2(0, 0)
+spin_dir = 0
+spin_speed = 0.0
 
-[node name="spawnPos" type="Sprite2D" parent="." unique_id=707392428]
-visible = false
-self_modulate = Color(1, 0.14117648, 0.14901961, 1)
+[node name="spawnerIndicator" type="Sprite2D" parent="." unique_id=707392428]
+modulate = Color(0, 1, 1, 1)
 scale = Vector2(6, 6)
 texture = ExtResource("1_njy4x")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=404830120]
 
+[node name="staticActTimer" type="Timer" parent="." unique_id=1539084988]
+
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="staticActTimer" to="." method="_on_static_act_timer_timeout"]

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SpawnParam" format=3 uid="uid://k06oabnpj6uh"]
+
+[ext_resource type="Script" uid="uid://cs5vuq4v60kfj" path="res://(5)EnemySpawners/Spawn_Param.gd" id="1_v7yb3"]
+
+[resource]
+script = ExtResource("1_v7yb3")
+spawnBoxCount = 4
+spawner_type = "static"
+enemy_name = "Virus"
+enemy_amount = 80
+spawn_interval = 0.22
+param_type = "spin"
+spin_initPos = Vector2(128, 0)
+spin_speed = 44.0
+mov_override_name = "follow_spin"
+mov_override_dur = 12.0
+mov_overrideStr = 11.0
+metadata/_custom_type_script = "uid://cs5vuq4v60kfj"

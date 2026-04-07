@@ -1,7 +1,7 @@
 # enemy_pool.gd
 extends Node
 
-const enemy_count: int = 500
+const enemy_count: int = 400
 const enemy_pool_pos: Vector2 = Vector2(512,-128)
 var blank_enemies: Array [Enemy]
 @onready var blank_enemy: PackedScene = preload("res://(2)Enemies/enemy_blank.tscn")
@@ -30,10 +30,8 @@ func return_to_pool(_enemy: Enemy):
 func put_enemy_toGame(_enemy_dict: EnemyScaledData, _spawnPos: Vector2) :
 	var newEnemy: Enemy = blank_enemies.pop_back()
 	if newEnemy:
-		newEnemy.load_data(_enemy_dict)
 		newEnemy.global_position = _spawnPos
+		newEnemy.load_data(_enemy_dict)
+		
 
-	
-	
-	
 	

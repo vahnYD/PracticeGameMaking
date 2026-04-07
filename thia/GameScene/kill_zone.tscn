@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://tej71s2gl14s"]
+
+[ext_resource type="Script" uid="uid://c02e8t83c772l" path="res://GameScene/KillZone.gd" id="1_y15s8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y15s8"]
+size = Vector2(977, 7793)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wds7d"]
+size = Vector2(8411, 964)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwtwk"]
+size = Vector2(8413, 973)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b7ots"]
+size = Vector2(1019, 7797)
+
+[node name="KillZone" type="Area2D" unique_id=600562154 groups=["killZone"]]
+collision_layer = 128
+collision_mask = 28
+script = ExtResource("1_y15s8")
+
+[node name="leftSide" type="CollisionShape2D" parent="." unique_id=1734168474]
+position = Vector2(-2476, 1060.5)
+shape = SubResource("RectangleShape2D_y15s8")
+
+[node name="topSide" type="CollisionShape2D" parent="." unique_id=345638730]
+position = Vector2(2218.5, -2353)
+shape = SubResource("RectangleShape2D_wds7d")
+
+[node name="botSide" type="CollisionShape2D" parent="." unique_id=774676069]
+position = Vector2(2219.5, 4477.5)
+shape = SubResource("RectangleShape2D_lwtwk")
+
+[node name="rightSide" type="CollisionShape2D" parent="." unique_id=763176248]
+position = Vector2(6936, 1067.5)
+shape = SubResource("RectangleShape2D_b7ots")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

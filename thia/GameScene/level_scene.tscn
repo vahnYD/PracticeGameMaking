@@ -9,8 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://tu4etcl2cjrg" path="res://GameScene/enemy_container.tscn" id="5_bh12j"]
 [ext_resource type="Script" uid="uid://brutpfou8uqvg" path="res://GameScene/gameplay_tracker.gd" id="5_by4cb"]
 [ext_resource type="Script" uid="uid://bl8kb5k3ltqyw" path="res://GameScene/bg_pic.gd" id="7_hok3w"]
-[ext_resource type="Texture2D" uid="uid://ctg82ahijgqod" path="res://icon.svg" id="8_fcva7"]
 [ext_resource type="PackedScene" uid="uid://bkt7ggqngkfn4" path="res://(5)EnemySpawners/enemy_spawner_box.tscn" id="9_quj40"]
+[ext_resource type="Curve" uid="uid://bqdj6vs0tex4f" path="res://(9) Others/Curves/ease.tres" id="10_hok3w"]
+[ext_resource type="Curve" uid="uid://c8fejee2q31mh" path="res://(9) Others/Curves/rise_UP.tres" id="11_gvwc3"]
+[ext_resource type="PackedScene" uid="uid://tej71s2gl14s" path="res://GameScene/kill_zone.tscn" id="12_5ra60"]
 
 [node name="level_Cave" type="Node2D" unique_id=951068427]
 script = ExtResource("1_vrk01")
@@ -28,24 +30,138 @@ script = ExtResource("7_hok3w")
 
 [node name="EnemySpawner" parent="gameplayTracker/enemyContainer" unique_id=1391149849 instance=ExtResource("9_quj40")]
 z_index = 1
-position = Vector2(4308, 1100)
+position = Vector2(4444, 1111)
+spawnBoxCount = 2
 enemy_name = "Miteo"
-amount = 44
-spawn_interval = 0.25
-curve_flip = true
-curve_waveLength = 183.0
-curve_dur = 1.5
+enemy_amount = 44
+spawn_interval = 0.88
+curve_used = ExtResource("10_hok3w")
+curve_waveLength = 700.0
+curve_dur = 7.0
 
 [node name="EnemySpawner2" parent="gameplayTracker/enemyContainer" unique_id=1219181759 instance=ExtResource("9_quj40")]
-position = Vector2(3551, 1413)
-mov_override_name = "seek"
-mov_override_dur = 3.2
+position = Vector2(5046, 820)
+spawnBoxCount = 4
+enemy_name = "Virus"
+enemy_amount = 200
+spawn_interval = 0.44000000000000006
+curve_used = ExtResource("10_hok3w")
+curve_dur = 4.0
+mov_override_name = "randomize"
+mov_override_dur = 9.0
+mov_overrideStr = 2.0
+
+[node name="EnemySpawner3" parent="gameplayTracker/enemyContainer" unique_id=2040710882 instance=ExtResource("9_quj40")]
+position = Vector2(3978, 1737)
+spawnBoxCount = 4
+spawner_type = "static"
+staticTime = 44.0
+enemy_name = "Virus"
+enemy_amount = 20
+spawn_interval = 0.33
+param_type = "spin"
+curve_used = ExtResource("10_hok3w")
+curve_UpDown = false
+curve_RightLeft = true
+curve_waveLength = 536.0
+spin_initPos = Vector2(0, 40)
+spin_dir = 1
+spin_speed = 100.0
+mov_override_name = "follow_spin"
+mov_override_dur = 18.0
+mov_overrideStr = 8.0
+curve_progress = 0.0
+curve_cur_value = 0.0
+
+[node name="EnemySpawner4" parent="gameplayTracker/enemyContainer" unique_id=1509587650 instance=ExtResource("9_quj40")]
+position = Vector2(3904, 392)
+spawnBoxCount = 4
+staticTime = 1.0
+enemy_name = "Virus"
+enemy_amount = 180
+spawn_interval = 0.22
+param_type = "spin"
+spin_initPos = Vector2(128, 0)
+spin_dir = 1
+spin_speed = 44.0
+mov_override_name = "out_in_spiral"
+mov_override_dur = 12.0
+mov_overrideStr = 11.0
+curve_progress = 0.0
+curve_cur_value = 0.0
+
+[node name="EnemySpawner5" parent="gameplayTracker/enemyContainer" unique_id=851966930 instance=ExtResource("9_quj40")]
+position = Vector2(3904, 1736)
+spawnBoxCount = 4
+enemy_name = "Virus"
+enemy_amount = 180
+spawn_interval = 0.22
+param_type = "spin"
+spin_initPos = Vector2(128, 0)
+spin_dir = 1
+spin_speed = 44.0
+mov_override_name = "out_in_spiral"
+mov_override_dur = 12.0
+mov_overrideStr = 11.0
+curve_progress = 0.0
+curve_cur_value = 0.0
+
+[node name="EnemySpawner6" parent="gameplayTracker/enemyContainer" unique_id=953247994 instance=ExtResource("9_quj40")]
+position = Vector2(4642, 407)
+enemy_name = "Virus"
+enemy_amount = 26
+spawn_interval = 0.35
+param_type = "spin"
+curve_used = ExtResource("11_gvwc3")
+curve_flip = true
+curve_dur = 9.0
+spin_initPos = Vector2(256, 256)
+spin_dir = 1
+spin_speed = 55.0
+mov_override_name = "follow_spin"
+mov_override_dur = 11.0
+mov_overrideStr = 12.0
+curve_progress = 0.0
+curve_cur_value = 0.0
+
+[node name="EnemySpawner7" parent="gameplayTracker/enemyContainer" unique_id=247646125 instance=ExtResource("9_quj40")]
+position = Vector2(4601, 310)
+enemy_name = "Virus"
+enemy_amount = 26
+spawn_interval = 0.35
+param_type = "spin"
+curve_used = ExtResource("11_gvwc3")
+curve_flip = true
+curve_dur = 9.0
+spin_initPos = Vector2(256, 256)
+spin_dir = 1
+spin_speed = 55.0
+mov_override_name = "follow_spin"
+mov_override_dur = 11.0
+mov_overrideStr = 12.0
+curve_progress = 0.0
+curve_cur_value = 0.0
+
+[node name="EnemySpawner8" parent="gameplayTracker/enemyContainer" unique_id=1514585832 instance=ExtResource("9_quj40")]
+position = Vector2(4538, 200)
+enemy_name = "Virus"
+enemy_amount = 26
+spawn_interval = 0.35
+param_type = "spin"
+curve_used = ExtResource("11_gvwc3")
+curve_flip = true
+curve_dur = 9.0
+spin_initPos = Vector2(256, 256)
+spin_dir = 1
+spin_speed = 55.0
+mov_override_name = "follow_spin"
+mov_override_dur = 11.0
+mov_overrideStr = 12.0
+curve_progress = 0.0
+curve_cur_value = 0.0
 
 [node name="Player" parent="." unique_id=837101679 instance=ExtResource("2_f2s4b")]
 z_index = 3
 position = Vector2(357, 1120)
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1781606604]
-visible = false
-position = Vector2(3640, 1180)
-texture = ExtResource("8_fcva7")
+[node name="KillZone" parent="." unique_id=600562154 instance=ExtResource("12_5ra60")]

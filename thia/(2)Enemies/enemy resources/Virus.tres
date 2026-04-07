@@ -20,6 +20,7 @@ animations = [{
 [resource]
 script = ExtResource("1_23kb8")
 enemy_name = "Virus"
+move_spd = 333.0
 sprite = SubResource("SpriteFrames_41wlj")
 collision_shape = SubResource("CircleShape2D_3eamb")
 metadata/_custom_type_script = "uid://cxxv4trw25okk"

@@ -17,9 +17,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_bh12j"]
 radius = 72.0
 
-[node name="enemy" type="Area2D" unique_id=1239831563]
+[node name="enemy" type="Area2D" unique_id=1239831563 groups=["enemy"]]
 collision_layer = 4
-collision_mask = 10
+collision_mask = 138
 monitoring = false
 monitorable = false
 script = ExtResource("1_tocjo")
@@ -31,6 +31,6 @@ sprite_frames = SubResource("SpriteFrames_y4gvq")
 shape = SubResource("CircleShape2D_bh12j")
 
 [node name="lifeTime" type="Timer" parent="." unique_id=1873709539]
-wait_time = 30.0
+wait_time = 45.0
 
 [connection signal="timeout" from="lifeTime" to="." method="_on_life_time_timeout"]
