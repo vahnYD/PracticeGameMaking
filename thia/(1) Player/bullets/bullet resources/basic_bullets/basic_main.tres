@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Bullet_Res" format=3 uid="uid://bwj43abj1agga"]
+
+[ext_resource type="Shape2D" uid="uid://cmbnj3b1y7nxl" path="res://(1) Player/bullets/bullet collission shapes/basic_main_bullet.tres" id="1_u1ysn"]
+[ext_resource type="Script" uid="uid://cha2lw3ssc8aw" path="res://(1) Player/bullets/bullet resources/bullet_res.gd" id="2_ybwuf"]
+[ext_resource type="Texture2D" uid="uid://b7brw0nu14o3o" path="res://(0)Sprites/Bullet_1.png" id="3_vsbj3"]
+
+[resource]
+script = ExtResource("2_ybwuf")
+bullet_name = "basic_main"
+mov_speed = 5300.0
+col_Shape = ExtResource("1_u1ysn")
+sprite_texture = ExtResource("3_vsbj3")
+amount_InPool = 55
+metadata/_custom_type_script = "uid://cha2lw3ssc8aw"

@@ -12,3 +12,5 @@ extends Resource
 
 @export var sprite: SpriteFrames
 @export var collision_shape : Shape2D
+
+@export_enum("common:0","uncommon:1","rare:2","super_rare:3","special:4") var enemy_rarity: int = 0

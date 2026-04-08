@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqp1nusj3owwh"
-path="res://.godot/imported/Wings.png-da7a905660b834f2ae58bc6172b31df9.ctex"
+uid="uid://rxw2ob7es4vt"
+path="res://.godot/imported/PowerUp_big.png-9acb77e5b1c14052ea657adb26913407.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://(0)Sprites/Wings.png"
-dest_files=["res://.godot/imported/Wings.png-da7a905660b834f2ae58bc6172b31df9.ctex"]
+source_file="res://(0)Sprites/PickUps/PowerUp_big.png"
+dest_files=["res://.godot/imported/PowerUp_big.png-9acb77e5b1c14052ea657adb26913407.ctex"]
 
 [params]
 

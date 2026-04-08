@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CurveData" format=3 uid="uid://duj1wmlbhmge"]
 
-[ext_resource type="Script" uid="uid://bc2k1dns4bcyv" path="res://(5)EnemySpawners/Curve_Data.gd" id="1_5s8rh"]
+[ext_resource type="Script" uid="uid://bc2k1dns4bcyv" path="res://(9) Others/deprecated/Curve_Data.gd" id="1_5s8rh"]
 
 [sub_resource type="Curve" id="Curve_5s8rh"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.3, 0.7), 0.0, 0.0, 0, 0, Vector2(0.7, 0.3), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]

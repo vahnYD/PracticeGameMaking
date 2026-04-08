@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpawnParam" format=3 uid="uid://ckmtjqkowldks"]
+
+[ext_resource type="Curve" uid="uid://bqdj6vs0tex4f" path="res://(9) Others/Curves/ease.tres" id="1_2e0go"]
+[ext_resource type="Script" uid="uid://cs5vuq4v60kfj" path="res://(5)EnemySpawners/Spawn_Param.gd" id="1_eq2sh"]
+
+[resource]
+script = ExtResource("1_eq2sh")
+spawner_type = "static"
+enemy_name = "Virus"
+enemy_amount = 14
+spawn_interval = 0.24000000000000002
+curve_used = ExtResource("1_2e0go")
+curve_waveLength = 80.0
+curve_dur = 24.0
+mov_override_name = "freeze"
+mov_override_dur = 2.0
+mov_overrideStr = 1.0
+spawner_movVector = Vector2(555, 600)
+metadata/_custom_type_script = "uid://cs5vuq4v60kfj"

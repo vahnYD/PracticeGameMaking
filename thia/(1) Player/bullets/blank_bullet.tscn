@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b6r4aapca6cn6"]
+
+[ext_resource type="Script" uid="uid://bw6a4j3pximgg" path="res://(1) Player/bullets/bullet.gd" id="1_8ux0u"]
+[ext_resource type="Texture2D" uid="uid://ctrr470w1lsxd" path="res://(0)Sprites/Bullet_3.png" id="2_1vypx"]
+[ext_resource type="Shape2D" uid="uid://4phco3uc0dcq" path="res://(1) Player/bullets/bullet collission shapes/basic_side2_bullet.tres" id="3_8ux0u"]
+
+[node name="BlankBullet" type="Area2D" unique_id=1383818110]
+collision_layer = 8
+collision_mask = 148
+script = ExtResource("1_8ux0u")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=2122460191]
+texture = ExtResource("2_1vypx")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=705179290]
+rotation = 1.5707964
+shape = ExtResource("3_8ux0u")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -7,6 +7,7 @@ var curve_chaotic: CurveData
 # or store them in a dict for dynamic lookup
 var all_curves: Dictionary = {}
 
+## deprecated
 func _ready() -> void:
 	# Load each curve resource by path
 	curve_ease   = load("res://(4) Global Scripts/curves/curve_ease.tres")

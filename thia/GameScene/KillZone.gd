@@ -1,3 +1,4 @@
+class_name Kill_Zone
 extends Area2D
 
 

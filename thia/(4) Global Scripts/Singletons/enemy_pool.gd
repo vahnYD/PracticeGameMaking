@@ -1,7 +1,7 @@
 # enemy_pool.gd
 extends Node
 
-const enemy_count: int = 400
+const enemy_count: int = 650
 const enemy_pool_pos: Vector2 = Vector2(512,-128)
 var blank_enemies: Array [Enemy]
 @onready var blank_enemy: PackedScene = preload("res://(2)Enemies/enemy_blank.tscn")
@@ -15,22 +15,25 @@ func build_pool():
 		var newblank : Enemy = blank_enemy.instantiate()
 		add_child(newblank)
 		newblank.visible = false
-		newblank.set_process(false)
-		newblank.set_physics_process(false)
+		newblank.process_mode = Node.PROCESS_MODE_DISABLED
 		newblank.returnedToPool.connect(return_to_pool)
 		newblank.z_index = ZIndex_constants.ENEMIES
 		newblank.global_position = enemy_pool_pos
+		
 		blank_enemies.append(newblank)
 
 func return_to_pool(_enemy: Enemy):
+	_enemy.process_mode = Node.PROCESS_MODE_DISABLED
 	_enemy.global_position = enemy_pool_pos
 	blank_enemies.append(_enemy)
+	#print(blank_enemies.size())
 
 
 func put_enemy_toGame(_enemy_dict: EnemyScaledData, _spawnPos: Vector2) :
 	var newEnemy: Enemy = blank_enemies.pop_back()
 	if newEnemy:
 		newEnemy.global_position = _spawnPos
+		newEnemy.process_mode = Node.PROCESS_MODE_INHERIT
 		newEnemy.load_data(_enemy_dict)
 		
 

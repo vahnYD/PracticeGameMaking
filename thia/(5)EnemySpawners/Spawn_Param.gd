@@ -2,7 +2,9 @@
 class_name SpawnParam
 extends Resource
 
-@export_range(1,24,1) var spawnBoxCount : int = 1
+## most of the bigger number (past 8) is mainly used for circle-shaped spawns
+@export_range(1,36,1) var spawnBoxCount : int = 1
+
 
 @export_enum("followBG","static") var spawner_type: String = "followBG"
 		
@@ -10,7 +12,7 @@ extends Resource
 
 @export_enum("Miteo", "Virus") var enemy_name: String
 @export_range(1,300, 1) var enemy_amount: int = 10
-@export_range(0.1, 3.0, 0.01) var spawn_interval: float = 0.2
+@export_range(0.1, 6.0, 0.01) var spawn_interval: float = 0.2
 
 @export_enum("curve","spin") var param_type : String = "curve":
 	set (value):
@@ -30,7 +32,7 @@ extends Resource
 @export var curve_type : GlobalTypes.curve_types = GlobalTypes.curve_types.ping_pong
 @export var curve_flip : bool = false
 
-@export_range(0.0, 1100.0, 1.0) var curve_waveLength: float = 512.0 
+@export_range(0.0, 1400.0, 1.0) var curve_waveLength: float = 512.0 
 
 ## lower value means faster, default amount is 2.0
 @export_range(0.1, 40.0, 0.1) var curve_dur: float = 2.0
@@ -51,6 +53,9 @@ extends Resource
 @export_range(0.0,25.0,0.1) var mov_override_dur: float = 0.0
 @export_range(0.0,12.0,0.1) var mov_overrideStr: float = 0.0
 #endregion
+
+## moving the spawner itself in a vector direction once its activated.
+@export var spawner_movVector : Vector2 = Vector2.ZERO
 
 
 func _validate_property(property: Dictionary) -> void:

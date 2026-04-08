@@ -20,10 +20,11 @@ animations = [{
 [resource]
 script = ExtResource("1_1nbp0")
 enemy_name = "Miteo"
-HP = 33.0
+HP = 166.0
 ATK = 3.0
-move_spd = 200.0
+move_spd = 255.0
 move_type = 2
+base_difficulty = 4.0
 sprite = SubResource("SpriteFrames_1omaa")
 collision_shape = SubResource("CircleShape2D_ssap0")
 metadata/_custom_type_script = "uid://cxxv4trw25okk"

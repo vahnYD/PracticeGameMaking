@@ -13,8 +13,8 @@ extends Node2D
 		
 
 
-
-@export_range(1,24,1) var spawnBoxCount : int = 1
+## most of the bigger number (past 8) is mainly used for circle-shaped spawns
+@export_range(1,36,1) var spawnBoxCount : int = 1
 
 @export_enum("followBG","static") var spawner_type: String = "followBG":
 	set(value):
@@ -27,7 +27,7 @@ extends Node2D
 
 @export_enum("Miteo", "Virus") var enemy_name: String
 @export_range(1,300, 1) var enemy_amount: int = 10
-@export_range(0.1, 3.0, 0.01) var spawn_interval: float = 0.2
+@export_range(0.1, 6.0, 0.01) var spawn_interval: float = 0.2
 
 @export_enum("curve","spin") var param_type : String = "curve":
 	set (value):
@@ -47,7 +47,7 @@ extends Node2D
 @export var curve_type : GlobalTypes.curve_types = GlobalTypes.curve_types.ping_pong
 @export var curve_flip : bool = false
 
-@export_range(0.0, 1100.0, 1.0) var curve_waveLength: float = 512.0 
+@export_range(0.0, 1400.0, 1.0) var curve_waveLength: float = 512.0 
 
 ## lower value means faster, default amount is 2.0
 @export_range(0.1, 40.0, 0.1) var curve_dur: float = 2.0
@@ -69,6 +69,8 @@ extends Node2D
 @export_range(0.0,12.0,0.1) var mov_overrideStr: float = 0.0
 #endregion
 
+## moving the spawner itself in a vector direction once its activated.
+@export var spawner_movVector : Vector2 = Vector2.ZERO
 
 ## is active means currently, actively spawning enemies.
 var is_active: bool = false
@@ -148,6 +150,9 @@ func _load_from_param(p: SpawnParam) -> void:
 	mov_override_name     = p.mov_override_name
 	mov_override_dur      = p.mov_override_dur
 	mov_overrideStr       = p.mov_overrideStr
+	
+	spawner_movVector     = p.spawner_movVector
+
 
 func _ready():
 	call_deferred("_update_editor_visuals")
@@ -171,6 +176,9 @@ func _process(delta):
 
 	if not is_active or cur_enemy_data == null:
 		return
+		
+	global_position += spawner_movVector * delta
+	
 	if param_type == "curve":
 		time += delta
 		for key in spawnPosBoxes:
@@ -192,6 +200,7 @@ func _process(delta):
 			EnemyPool.put_enemy_toGame(cur_enemy_data,pos)
 	if enemy_amount <= 0:
 		deactivate_spawner()
+
 
 func curve_movement(_delta, spawnbox : Marker2D, init_progress: float ):
 	var _spec_time : float = time + (init_progress * curve_dur)
@@ -218,7 +227,6 @@ func spin_movement(_delta, spawnbox : Marker2D):
 	rotation_degrees += _delta * spin_speed * spin_dir
 	if spawn_cooldown >= 0.01 : 
 		enemy_spawnPoses.append(spawnbox.global_position)
-	
 
 
 func grab_enemy_data():
@@ -227,11 +235,13 @@ func grab_enemy_data():
 	match mov_override_name:
 		"freeze":
 			## freeze enemy for a period in the timer.
-			onSpawnFunc = func(en: Enemy):
+			onSpawnFunc = func(en : Enemy):
 				var saveMS :float = en.move_spd
 				en.move_spd = 0.0
-				await get_tree().create_timer(en.move_overrideDur).timeout
-				en.move_spd = saveMS
+				var _tween : Tween = create_tween()
+				_tween.tween_property(en,"move_spd",saveMS,en.move_overrideDur)\
+				.set_ease(Tween.EASE_IN)\
+				.set_trans(Tween.TRANS_EXPO)
 				
 		"seek":
 			## apply the veer, gradually reducing in strength as long as override_VeerStr > 0
@@ -266,7 +276,7 @@ func grab_enemy_data():
 		
 		"follow_spin":
 			var spawner_ref := self				
-			_mov_override = func(en : Enemy, delta):
+			_mov_override = func(en : Enemy, _delta):
 				if en.override_VeerStr > 0:
 					var progress = 1.0 - (en.move_overrideDur / en.move_overrideDurMax)
 					# gets move override weaker depending on progress. also, apparently with \, you can make a new line
@@ -300,7 +310,6 @@ func grab_enemy_data():
 					en.move_OverrideDir = spawner_ref.global_position.direction_to(en.global_position)\
 					* en.override_VeerStr * (1 - progress)
 
-
 	get_enemy_data.emit(self,enemy_name, onSpawnFunc,_mov_override, mov_override_dur, mov_overrideStr)
 
 func setup_spawnerboxes_spin(spawnerAmount: int):
@@ -321,7 +330,6 @@ func setup_spawnerboxes_spin(spawnerAmount: int):
 			spawnPosBoxes[count] = {
 				"spawnbox": newSpawnPosBox, "pos": newSpawnPosBox.position }          # log it in
 
-		
 		
 func setup_spawnerboxes_curve(spawnerAmount: int):
 	if spawnerAmount == 1: # if only 1 spawner, just use curve_init time

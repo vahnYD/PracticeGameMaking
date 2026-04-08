@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://db4jsdmudvx52"]
+
+[ext_resource type="Script" uid="uid://cs728alvy56if" path="res://(1) Player/player.gd" id="1_vybb5"]
+[ext_resource type="Script" uid="uid://cha2lw3ssc8aw" path="res://(1) Player/bullets/bullet resources/bullet_res.gd" id="2_tdf06"]
+[ext_resource type="Resource" uid="uid://bwj43abj1agga" path="res://(1) Player/bullets/bullet resources/basic_bullets/basic_main.tres" id="3_536uq"]
+[ext_resource type="Resource" uid="uid://bsuku47xu47a7" path="res://(1) Player/bullets/bullet resources/basic_bullets/basic_side1.tres" id="4_2urms"]
+[ext_resource type="Resource" uid="uid://bmyhgnm1pxxot" path="res://(1) Player/bullets/bullet resources/basic_bullets/basic_side2.tres" id="5_pl4ak"]
+[ext_resource type="Texture2D" uid="uid://cqp1nusj3owwh" path="res://(0)Sprites/Thia/Wings.png" id="6_tdf06"]
+[ext_resource type="Texture2D" uid="uid://dst75rl0bmqb7" path="res://(0)Sprites/Thia/Body.png" id="7_536uq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bh12j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_tdf06")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vrk01"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_536uq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2olkc"]
+radius = 36.0
+
+[node name="Player" type="Area2D" unique_id=837101679 groups=["thePlayer"]]
+collision_layer = 2
+collision_mask = 52
+script = ExtResource("1_vybb5")
+Cur_bullets_res = Array[ExtResource("2_tdf06")]([ExtResource("3_536uq"), ExtResource("4_2urms"), ExtResource("5_pl4ak")])
+
+[node name="Wings" type="AnimatedSprite2D" parent="." unique_id=309329960]
+position = Vector2(-27, -56)
+sprite_frames = SubResource("SpriteFrames_bh12j")
+offset = Vector2(-64, -26)
+
+[node name="bodyPic" type="AnimatedSprite2D" parent="." unique_id=1805028344]
+sprite_frames = SubResource("SpriteFrames_vrk01")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1808856876]
+shape = SubResource("CircleShape2D_2olkc")
+
+[node name="bullet_shootMarker" type="Marker2D" parent="." unique_id=1376259567]
+position = Vector2(312, 0)
+
+[node name="shotCooldownTimer" type="Timer" parent="." unique_id=1270318727]
+wait_time = 0.122
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="shotCooldownTimer" to="." method="_on_shot_cooldown_timer_timeout"]

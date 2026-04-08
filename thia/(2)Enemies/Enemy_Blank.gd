@@ -2,6 +2,8 @@
 class_name Enemy
 extends Area2D
 
+
+
 #region enemy basic stats
 var enemy_name: String = "unknown"
 var HP: float = 10.0
@@ -10,6 +12,8 @@ var ATK: float = 5.0
 var DEF: float = 0.0
 var move_spd: float = 300.0
 var move_type: GlobalTypes.enemy_move_types = GlobalTypes.enemy_move_types.straight
+
+var enemy_rarity: int = 0
 #endregion
 
 #region move override vars
@@ -37,6 +41,8 @@ var move_dir: Vector2 = Vector2.ZERO
 @onready var collission: CollisionShape2D = $Collision
 @onready var lifetimeTimer: Timer = $lifeTime
 
+var PowerUp : PackedScene = preload("res://(6) PickUps/PowerUp.tscn")
+
 var activated: bool = false
 var isSpecial: float = 0.0
 
@@ -48,7 +54,6 @@ signal returnedToPool(Enemy)
 
 
 func load_data(_enemy_dict : EnemyScaledData):
-	
 	if _enemy_dict.onSpawnFunc.is_valid():
 		onSpawnFunc = _enemy_dict.onSpawnFunc
 	else:
@@ -57,6 +62,7 @@ func load_data(_enemy_dict : EnemyScaledData):
 		move_override = _enemy_dict.move_Override
 	else:
 		move_override = Callable()
+	enemy_rarity = _enemy_dict.enemy_rarity
 	move_overrideDur = _enemy_dict.move_overrideDur
 	move_overrideDurMax = _enemy_dict.move_overrideDur
 	override_VeerStr = _enemy_dict.override_VeerStr
@@ -109,8 +115,6 @@ func homing_movement():
 	move_dir = (Vector2.LEFT + homing_dir * homing_strength)
 
 func activate():
-	set_process(true)
-	set_physics_process(true)
 	monitorable = true
 	monitoring = true
 	visible = true
@@ -138,9 +142,41 @@ func deactivate():
 	move_overrideDurMax = 0.0
 	move_overrideDur = 0.0
 	visible = false
-	set_process(false)
-	set_physics_process(false)
 	returnedToPool.emit(self)
+
+func takeDamage(_amount: float):
+	var real_amount : float
+	real_amount = clampf(_amount , 1.0 , _amount - DEF )  
+	HP -= real_amount
+	if HP <= 0 :
+		spawnDrop()
+		await get_tree().process_frame
+		deactivate()
+
+func spawnDrop():
+	match enemy_rarity:
+		0:
+			if randf() < 0.24: # 24% chance
+				var PU : Power_Up = PowerUp.instantiate()
+				PU.global_position = global_position
+				get_tree().current_scene.add_child.call_deferred(PU)
+
+		1:
+			print("drop PowerUp")
+			if randf() < 0.69: # 69% chance to drop an extra powerup
+				print("drop PowerUp") 
+		2:
+			print("drop PowerUp")
+			print("drop PowerUp")
+			print("drop PowerUp")
+			if randf() < 0.2: # x RelicBonusDropChance, managed by gameManager, increases whenever you 
+								# kill a rare enemy but didn't get anything
+				print("drop Relic")
+				# also +1 RelicDrop count. will be managed by 
+				# gameManager so you cant get too much relics.
+			else:
+				print("increase RelicDropChance")
+
 
 
 func _on_life_time_timeout():

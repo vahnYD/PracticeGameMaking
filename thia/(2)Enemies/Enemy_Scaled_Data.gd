@@ -22,3 +22,5 @@ var move_Override : Callable = Callable()
 var onSpawnFunc: Callable = Callable()
 var move_overrideDur: float = 0.0
 var override_VeerStr : float = 0.0
+
+var enemy_rarity: int

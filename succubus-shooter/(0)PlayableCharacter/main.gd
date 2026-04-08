@@ -38,7 +38,7 @@ const acceleration: float = 5000
 
 
 var _Movement_direction : Vector2
-var TemporaryPowerupTimer : float = 1 #fully temprorary, lol
+var TemporaryPowerupTimer : float = 25 #fully temprorary, lol
 var _shotDelay: float = 0
 func _ready():
 	playScreen = GlobalScripts.max_ScreenSize

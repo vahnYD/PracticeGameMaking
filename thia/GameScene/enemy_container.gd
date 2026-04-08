@@ -19,14 +19,18 @@ func _ready():
 
 
 func grab_spawners():
-	for enemy_spawner in get_children():
-		if enemy_spawner is EnemySpawnerBox:
-			enemy_spawner.get_enemy_data.connect(send_enemy_data)
-			enemy_spawner.slide_speed = spawner_slide_speed
-			enemy_spawner.start_game()
-			enemy_spawner.homingTarget = Player
-			spawner_list.append(enemy_spawner)
+	seek_spawners(self)
 
+func seek_spawners(_node: Node):
+	for child in _node.get_children():
+		if child is EnemySpawnerBox:
+			child.get_enemy_data.connect(send_enemy_data)
+			child.slide_speed = spawner_slide_speed
+			child.start_game()
+			child.homingTarget = Player
+			spawner_list.append(child)
+		else:
+			seek_spawners(child)
 	
 func build_curLevel_dict(_enemy_list: Array[EnemyResources], _level_Dif: float):
 	for e:EnemyResources in _enemy_list:
@@ -62,6 +66,7 @@ func send_enemy_data(_spawner: EnemySpawnerBox, _enemy_name: String, _onSpawnFun
 	data.sprite = source.sprite
 	data.collision_shape = source.collision_shape
 	data.player_target = source.player_target
+	data.enemy_rarity = source.enemy_rarity
 	
 	# Then apply spawner-specific overrides
 	data.onSpawnFunc = _onSpawnFunc
