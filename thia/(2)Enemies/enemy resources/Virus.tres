@@ -20,8 +20,8 @@ animations = [{
 [resource]
 script = ExtResource("1_23kb8")
 enemy_name = "Virus"
-HP = 60.0
-move_spd = 488.0
+HP = 80.0
+move_spd = 522.0
 base_difficulty = 2.0
 sprite = SubResource("SpriteFrames_41wlj")
 collision_shape = SubResource("CircleShape2D_3eamb")

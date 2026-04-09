@@ -60,7 +60,7 @@ func _process(delta):
 	
 
 func Bullet_dmg_calc (_playerStr: float):
-	actual_dmg = _playerStr * dmg_multiplier
+	actual_dmg = _playerStr * dmg_multiplier + b_bonus_dmg
 
 func _on_area_entered(area):
 	if area is Enemy:

@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="EnemyResources" format=3 uid="uid://bxorbximkdcoj"]
+
+[ext_resource type="Script" uid="uid://cxxv4trw25okk" path="res://(2)Enemies/Enemy_Res.gd" id="1_v1785"]
+[ext_resource type="Texture2D" uid="uid://dqes7xgyax181" path="res://(0)Sprites/Enemies/InscHead.png" id="2_rxc4y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xm5ul"]
+radius = 120.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1o15i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rxc4y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_v1785")
+enemy_name = "InscHead"
+HP = 240.0
+ATK = 8.0
+move_spd = 566.0
+move_type = 1
+base_difficulty = 5.0
+sprite = SubResource("SpriteFrames_1o15i")
+collision_shape = SubResource("CircleShape2D_xm5ul")
+metadata/_custom_type_script = "uid://cxxv4trw25okk"

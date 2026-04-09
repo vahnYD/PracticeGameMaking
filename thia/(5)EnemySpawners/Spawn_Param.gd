@@ -10,7 +10,7 @@ extends Resource
 		
 @export var staticTime: float = 0.05
 
-@export_enum("Miteo", "Virus") var enemy_name: String
+@export_enum("RockEgg","Virus","Skull","Darth","InscHead","Miteo", ) var enemy_name: String
 @export_range(1,300, 1) var enemy_amount: int = 10
 @export_range(0.1, 6.0, 0.01) var spawn_interval: float = 0.2
 
@@ -32,7 +32,7 @@ extends Resource
 @export var curve_type : GlobalTypes.curve_types = GlobalTypes.curve_types.ping_pong
 @export var curve_flip : bool = false
 
-@export_range(0.0, 1400.0, 1.0) var curve_waveLength: float = 512.0 
+@export_range(0.0, 1860.0, 1.0) var curve_waveLength: float = 512.0 
 
 ## lower value means faster, default amount is 2.0
 @export_range(0.1, 40.0, 0.1) var curve_dur: float = 2.0

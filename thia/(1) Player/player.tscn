@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://bmyhgnm1pxxot" path="res://(1) Player/bullets/bullet resources/basic_bullets/basic_side2.tres" id="5_pl4ak"]
 [ext_resource type="Texture2D" uid="uid://cqp1nusj3owwh" path="res://(0)Sprites/Thia/Wings.png" id="6_tdf06"]
 [ext_resource type="Texture2D" uid="uid://dst75rl0bmqb7" path="res://(0)Sprites/Thia/Body.png" id="7_536uq"]
+[ext_resource type="Script" uid="uid://bym55sv5e2bxj" path="res://(1) Player/pick_up_magnet.gd" id="8_536uq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bh12j"]
 animations = [{
@@ -33,6 +34,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_2olkc"]
 radius = 36.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tdf06"]
+radius = 440.0
+
 [node name="Player" type="Area2D" unique_id=837101679 groups=["thePlayer"]]
 collision_layer = 2
 collision_mask = 52
@@ -57,5 +61,15 @@ position = Vector2(312, 0)
 wait_time = 0.122
 one_shot = true
 
+[node name="PickUpMagnet" type="Area2D" parent="." unique_id=2041919587]
+collision_layer = 0
+collision_mask = 32
+monitorable = false
+script = ExtResource("8_536uq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpMagnet" unique_id=1202910280]
+shape = SubResource("CircleShape2D_tdf06")
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="shotCooldownTimer" to="." method="_on_shot_cooldown_timer_timeout"]
+[connection signal="area_entered" from="PickUpMagnet" to="." method="_on_pick_up_magnet_area_entered"]

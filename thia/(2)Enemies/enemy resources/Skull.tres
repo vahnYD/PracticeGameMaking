@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="EnemyResources" format=3 uid="uid://df5rlmyhsw1vh"]
+
+[ext_resource type="Script" uid="uid://cxxv4trw25okk" path="res://(2)Enemies/Enemy_Res.gd" id="1_3pfd0"]
+[ext_resource type="Texture2D" uid="uid://bfvdrteapo5nv" path="res://(0)Sprites/Enemies/Skull.png" id="2_hdngj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rh6xy"]
+radius = 120.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e0j3k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hdngj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_3pfd0")
+enemy_name = "Skull"
+HP = 120.0
+move_spd = 600.0
+base_difficulty = 3.0
+sprite = SubResource("SpriteFrames_e0j3k")
+collision_shape = SubResource("CircleShape2D_rh6xy")
+metadata/_custom_type_script = "uid://cxxv4trw25okk"

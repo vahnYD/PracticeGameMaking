@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://coccjhg3ycnu7"]
 
-[ext_resource type="Texture2D" uid="uid://b6e68ggjeo0a7" path="res://(0)Sprites/Enemies/Virus.png" id="1_e31ui"]
 [ext_resource type="Script" uid="uid://dsub25sysw4n6" path="res://(2)Enemies/Enemy_Blank.gd" id="1_tocjo"]
+[ext_resource type="Texture2D" uid="uid://dqes7xgyax181" path="res://(0)Sprites/Enemies/InscHead.png" id="2_tocjo"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_y4gvq"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_c2aso"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_e31ui")
+"texture": ExtResource("2_tocjo")
 }],
 "loop": true,
 "name": &"default",
@@ -15,7 +15,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bh12j"]
-radius = 72.0
+radius = 120.0
 
 [node name="enemy" type="Area2D" unique_id=1239831563 groups=["enemy"]]
 collision_layer = 4
@@ -25,7 +25,7 @@ monitorable = false
 script = ExtResource("1_tocjo")
 
 [node name="bodyPic" type="AnimatedSprite2D" parent="." unique_id=519119858]
-sprite_frames = SubResource("SpriteFrames_y4gvq")
+sprite_frames = SubResource("SpriteFrames_c2aso")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=86289761]
 shape = SubResource("CircleShape2D_bh12j")

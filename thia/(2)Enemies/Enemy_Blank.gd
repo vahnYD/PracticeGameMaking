@@ -26,13 +26,7 @@ var override_VeerStr: float = 0.0
 var move_OverrideDir: Vector2 = Vector2.ZERO
 #endregion
 
-#region if move_type is Homing
-var homing_cooldown: float = 0.133
-var homing_reset: float = 0.133
-var homing_dir: Vector2
-var homing_strength: float = 0.5
-var player_target: PlayerCharacter
-#endregion
+
 
 
 var move_dir: Vector2 = Vector2.ZERO
@@ -43,6 +37,7 @@ var move_dir: Vector2 = Vector2.ZERO
 
 var PowerUp : PackedScene = preload("res://(6) PickUps/PowerUp.tscn")
 
+var onGoingDiff: float = 1.0
 var activated: bool = false
 var isSpecial: float = 0.0
 
@@ -62,6 +57,7 @@ func load_data(_enemy_dict : EnemyScaledData):
 		move_override = _enemy_dict.move_Override
 	else:
 		move_override = Callable()
+	onGoingDiff = _enemy_dict.onGoingDiff
 	enemy_rarity = _enemy_dict.enemy_rarity
 	move_overrideDur = _enemy_dict.move_overrideDur
 	move_overrideDurMax = _enemy_dict.move_overrideDur
@@ -97,6 +93,9 @@ func _process(delta):
 			if homing_cooldown <= 0 :
 				homing_movement()
 				homing_cooldown = homing_reset
+		GlobalTypes.enemy_move_types.wavy:
+			wave_movement(delta)
+			
 	if move_overrideDur > 0:
 		move_overrideDur -= delta
 		if move_override.is_valid():
@@ -110,9 +109,24 @@ func _process(delta):
 func basic_movement():
 	move_dir = Vector2.LEFT
 	
+#region if move_type is Homing
+var homing_cooldown: float = 0.133
+var homing_reset: float = 0.133
+var homing_dir: Vector2
+var homing_strength: float = 0.5
+var player_target: PlayerCharacter
+#endregion	
 func homing_movement():
 	homing_dir = global_position.direction_to(player_target.global_position).normalized()
 	move_dir = (Vector2.LEFT + homing_dir * homing_strength)
+	
+var wave_time: float = 0.0
+var wave_frequency: float = 3.0  # how fast it oscillates
+var wave_amplitude: float = 1.0  # how wide the wave is	
+func wave_movement(delta):
+	wave_time += delta
+	var wave_offset = sin(wave_time * wave_frequency) * wave_amplitude
+	move_dir = Vector2(move_dir.x, wave_offset).normalized()
 
 func activate():
 	monitorable = true
@@ -156,9 +170,13 @@ func takeDamage(_amount: float):
 func spawnDrop():
 	match enemy_rarity:
 		0:
-			if randf() < 0.24: # 24% chance
+			var PUSpawnChance : float = 0.21 + (0.02 * (onGoingDiff - 3)) # 21% base chance chance + enemy dif
+			PUSpawnChance = clamp(PUSpawnChance,0.1, 0.6)
+			if randf() < PUSpawnChance : 
+				
 				var PU : Power_Up = PowerUp.instantiate()
 				PU.global_position = global_position
+				PU.move_speed += move_spd * 0.2
 				get_tree().current_scene.add_child.call_deferred(PU)
 
 		1:

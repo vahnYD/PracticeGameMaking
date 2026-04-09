@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="EnemyResources" format=3 uid="uid://bscjtki74bfxe"]
+
+[ext_resource type="Script" uid="uid://cxxv4trw25okk" path="res://(2)Enemies/Enemy_Res.gd" id="1_q4ju0"]
+[ext_resource type="Texture2D" uid="uid://quri0v6aomyn" path="res://(0)Sprites/Enemies/RockEgg.png" id="2_wx7gg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u4ugb"]
+radius = 102.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h02bn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wx7gg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_q4ju0")
+enemy_name = "RockEgg"
+HP = 36.0
+ATK = 4.0
+move_spd = 330.0
+sprite = SubResource("SpriteFrames_h02bn")
+collision_shape = SubResource("CircleShape2D_u4ugb")
+metadata/_custom_type_script = "uid://cxxv4trw25okk"

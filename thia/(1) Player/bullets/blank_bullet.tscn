@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b6r4aapca6cn6"]
 
 [ext_resource type="Script" uid="uid://bw6a4j3pximgg" path="res://(1) Player/bullets/bullet.gd" id="1_8ux0u"]
-[ext_resource type="Texture2D" uid="uid://ctrr470w1lsxd" path="res://(0)Sprites/Bullet_3.png" id="2_1vypx"]
+[ext_resource type="Texture2D" uid="uid://ctrr470w1lsxd" path="res://(0)Sprites/Thia/Bullet_3.png" id="2_1vypx"]
 [ext_resource type="Shape2D" uid="uid://4phco3uc0dcq" path="res://(1) Player/bullets/bullet collission shapes/basic_side2_bullet.tres" id="3_8ux0u"]
 
 [node name="BlankBullet" type="Area2D" unique_id=1383818110]

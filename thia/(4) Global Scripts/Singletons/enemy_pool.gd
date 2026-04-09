@@ -26,7 +26,6 @@ func return_to_pool(_enemy: Enemy):
 	_enemy.process_mode = Node.PROCESS_MODE_DISABLED
 	_enemy.global_position = enemy_pool_pos
 	blank_enemies.append(_enemy)
-	#print(blank_enemies.size())
 
 
 func put_enemy_toGame(_enemy_dict: EnemyScaledData, _spawnPos: Vector2) :

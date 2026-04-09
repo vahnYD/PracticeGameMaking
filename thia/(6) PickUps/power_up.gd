@@ -19,10 +19,10 @@ func _ready():
 	z_index = ZIndex_constants.PICKUPS
 	start_pulse(self)
 	
-var accel: float = 0.0
+var move_speed: float = 160.0
 func _process(delta):
-	accel += delta
-	global_position += Vector2.LEFT * 16.0 * accel * delta
+	global_position += Vector2.LEFT * move_speed * delta
+
 
 func fade():
 	var _tween : Tween = create_tween()
