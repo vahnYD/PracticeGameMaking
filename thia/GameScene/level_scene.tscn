@@ -89,7 +89,7 @@ visible = false
 script = ExtResource("9_eprwa")
 dif_level = 0.9
 density_level = 3
-duration = 19.5
+duration = 17.5
 
 [node name="EnemySpawner" parent="gameplayTracker/enemyContainer/spawnerGroup1" unique_id=1219181759 instance=ExtResource("9_quj40")]
 position = Vector2(2928, -48)
@@ -529,6 +529,11 @@ mov_override_name = "seek"
 mov_override_dur = 2.4
 mov_overrideStr = 0.6
 
+[node name="spawnerGroup0" type="Node2D" parent="gameplayTracker/enemyContainer" unique_id=585639060]
+script = ExtResource("9_eprwa")
+queue_no = 6
+duration = 245.0
+
 [node name="bullet_pool" type="Node" parent="gameplayTracker" unique_id=541847857]
 
 [node name="Player" parent="." unique_id=837101679 instance=ExtResource("2_f2s4b")]
@@ -538,6 +543,7 @@ position = Vector2(357, 1120)
 [node name="KillZone" parent="." unique_id=600562154 instance=ExtResource("12_5ra60")]
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1568614637]
+layer = 10
 
 [node name="ingameGUI" type="Control" parent="HUD" unique_id=1203195848]
 layout_mode = 3
@@ -546,7 +552,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="HUD/ingameGUI" unique_id=1676507086]
+[node name="timelabel" type="Label" parent="HUD/ingameGUI" unique_id=1676507086]
 layout_mode = 0
 offset_left = 3139.0
 offset_top = 1977.0

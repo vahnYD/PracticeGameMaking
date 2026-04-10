@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 EnemyPool="*uid://cilaf7qx5ssia"
 GameManager="*uid://b0kqyrkqj4u12"
 BulletPool="*uid://cx6nh8ry2gq5k"
+DmgNumberPool="*uid://iydkn6peh1td"
 
 [display]
 

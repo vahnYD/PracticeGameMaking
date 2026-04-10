@@ -22,6 +22,10 @@ var cur_velocity: Vector2 = Vector2.ZERO
 
 var basePlayerStr: float = 25.0
 var PlayerStr: float = 25.0
+
+## for now, 30. to add a bit of challenge for the prototype,
+## adding a chance to lose. will be increased to 80 if
+## the roguelike mechanics ever gets added.
 var MaxHP: float = 30.0
 var CurHP: float:
 	set(value):
@@ -153,8 +157,6 @@ signal hurt(value: float)
 func _on_area_entered(area):
 	if area is Enemy:
 		CurHP -= maxf(area.ATK - CurDEF, 1.0)
-		# apply damage here
-		# also shake screen
 		hurt.emit(area.ATK)
 		area.deactivate()
 	if area is Power_Up:

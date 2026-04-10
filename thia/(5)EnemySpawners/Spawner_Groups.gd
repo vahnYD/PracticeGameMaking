@@ -11,7 +11,7 @@ extends Node
 @export_range(1,9,1)             var density_level : int = 1
 
 ## in seconds, how long does the wave setup lasts.
-@export_range(12.0 , 45.0, 0.1)   var duration : float   = 12.0
+@export_range(12.0 , 245.0, 0.1)   var duration : float   = 12.0
 
 ## is this spawner group a main one (small amount of huge continuous wave) or popcorn (small amount 
 ##  of enemies spawns in a lot of waves). typically main one has under 12 EnemySpawner, while

@@ -122,6 +122,8 @@ func deactivate_spawner():
 	is_active = false
 	set_process(false)
 	set_physics_process(false)
+	await get_tree().create_timer(47.0).timeout #enemies have a lifetime of 45s.
+	queue_free()
 	
 func _load_from_param(p: SpawnParam) -> void:
 	spawnBoxCount  = p.spawnBoxCount
@@ -238,7 +240,7 @@ func grab_enemy_data():
 			onSpawnFunc = func(en : Enemy):
 				var saveMS :float = en.move_spd
 				en.move_spd = 0.0
-				var _tween : Tween = create_tween()
+				var _tween : Tween = en.create_tween()
 				_tween.tween_property(en,"move_spd",saveMS,en.move_overrideDur)\
 				.set_ease(Tween.EASE_IN)\
 				.set_trans(Tween.TRANS_EXPO)
@@ -275,7 +277,7 @@ func grab_enemy_data():
 						en.move_OverrideDir = Vector2.DOWN * en.override_VeerStr
 		
 		"follow_spin":
-			var spawner_ref := self				
+			var spawner_ref := self
 			_mov_override = func(en : Enemy, _delta):
 				if en.override_VeerStr > 0:
 					var progress = 1.0 - (en.move_overrideDur / en.move_overrideDurMax)

@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://c5745xp6vb21w"]
+
+[ext_resource type="Script" uid="uid://sujym47nyk0" path="res://(4) Global Scripts/DmgNumber.gd" id="1_kxgxo"]
+[ext_resource type="FontFile" uid="uid://3il8q4hdov7s" path="res://(8) Fonts/Sekuya-Regular.ttf" id="2_ne7cg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ne7cg"]
+font = ExtResource("2_ne7cg")
+font_size = 60
+font_color = Color(0.8216135, 0, 0.02794943, 1)
+outline_size = 9
+
+[node name="DmgNumber" type="Node2D" unique_id=1963254555]
+script = ExtResource("1_kxgxo")
+
+[node name="txtPos" type="Node2D" parent="." unique_id=808207457]
+rotation = 0.23387411
+
+[node name="Label" type="Label" parent="txtPos" unique_id=137621709]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -34.0
+offset_right = 94.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 1.23)
+text = "1234567"
+label_settings = SubResource("LabelSettings_ne7cg")
+horizontal_alignment = 1
+vertical_alignment = 1

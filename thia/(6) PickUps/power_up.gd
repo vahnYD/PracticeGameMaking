@@ -7,8 +7,10 @@ extends Area2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape
 @onready var despawn_timer : Timer = $DespawnTimer
 
+var tween: Tween
+
 func start_pulse(target: Node2D, scale_amount: float = 1.1, speed: float = 0.88):
-	var tween = create_tween()
+	tween = create_tween()
 	tween.set_loops()                          # loop forever
 	tween.set_trans(Tween.TRANS_SINE)          # smooth in/out
 	tween.set_ease(Tween.EASE_IN_OUT)
@@ -25,9 +27,11 @@ func _process(delta):
 
 
 func fade():
+	tween.kill()
 	var _tween : Tween = create_tween()
 	_tween.tween_property(self, "modulate:a", 0.1, 1.2)
 	await _tween.finished
+	#_tween.kill()
 	queue_free()
 	
 

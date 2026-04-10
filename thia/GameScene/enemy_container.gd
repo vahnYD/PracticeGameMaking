@@ -53,9 +53,9 @@ func build_curLevel_dict(_enemy_list: Array[EnemyResources], _level_Dif: float):
 	for e:EnemyResources in _enemy_list:
 		var enemy_data:= EnemyScaledData.new()
 		enemy_data.enemy_name = e.enemy_name
-		enemy_data.HP = e.HP + (_level_Dif * 25)
-		enemy_data.ATK = e.ATK + (_level_Dif * 0.65) 
-		enemy_data.DEF = e.DEF + (_level_Dif * 0.1)
+		enemy_data.HP = e.HP + (_level_Dif * 69)
+		enemy_data.ATK = e.ATK + (_level_Dif * 0.7) 
+		enemy_data.DEF = e.DEF
 		enemy_data.onGoingDiff = e.base_difficulty + ( _level_Dif * 2.0 )
 		enemy_data.move_spd = e.move_spd
 		enemy_data.move_type = e.move_type
@@ -64,15 +64,12 @@ func build_curLevel_dict(_enemy_list: Array[EnemyResources], _level_Dif: float):
 		enemy_data.player_target = get_tree().get_first_node_in_group("thePlayer")
 		enemy_dict[e.enemy_name] = enemy_data
 	
-# its probably better to scale enemies at once on send_enemy_data
-#func upgrade_dict(_enemy_name: String, _newStats: EnemyScaledData):	
-	#enemy_dict[_enemy_name] = _newStats
 
 func upgradeOngoingDif(_value : float):
 	onGoingDif = levelDif + _value
 
 ## send enemy data while also applying their further, final scaling.
-## currently, only HP is affected.
+## currently, only HP is really affected.
 func send_enemy_data(_spawner: EnemySpawnerBox, _enemy_name: String, _onSpawnFunc: Callable = Callable(),
  _move_override: Callable = Callable(), _move_overrideDur: float = 0.0 , _override_VeerStr : float = 0.0) :
 	var source: EnemyScaledData = enemy_dict[_enemy_name]
@@ -83,7 +80,7 @@ func send_enemy_data(_spawner: EnemySpawnerBox, _enemy_name: String, _onSpawnFun
 	data.enemy_name = source.enemy_name
 	data.HP = source.HP * pow(onGoingDif, 1.05)
 	data.ATK = source.ATK + onGoingDif * 1.2
-	data.DEF = source.DEF + onGoingDif * 0.2
+	data.DEF = source.DEF + onGoingDif * 0.1
 	data.move_spd = source.move_spd
 	data.move_type = source.move_type
 	data.is_special = source.is_special

@@ -14,6 +14,8 @@ var move_spd: float = 300.0
 var move_type: GlobalTypes.enemy_move_types = GlobalTypes.enemy_move_types.straight
 
 var enemy_rarity: int = 0
+
+var dmgPosVec: Vector2 = Vector2 (36,-128)
 #endregion
 
 #region move override vars
@@ -49,6 +51,7 @@ signal returnedToPool(Enemy)
 
 
 func load_data(_enemy_dict : EnemyScaledData):
+	
 	if _enemy_dict.onSpawnFunc.is_valid():
 		onSpawnFunc = _enemy_dict.onSpawnFunc
 	else:
@@ -84,6 +87,9 @@ func load_data(_enemy_dict : EnemyScaledData):
 	
 
 func _process(delta):
+	
+	if isDamaged > 0.0 : isDamaged -= delta
+	
 	## move depending movetype
 	match move_type:
 		GlobalTypes.enemy_move_types.straight:
@@ -134,38 +140,58 @@ func activate():
 	visible = true
 	body_pic.modulate = Color.WHITE
 	activated = true
-	lifetimeTimer.start()
+	lifetimeTimer.start(45.0) #all enemies have 45 seconds of lifetime
 	if onSpawnFunc.is_valid():
 		onSpawnFunc.call(self)
-
-func deactivate():
+#
+#var _deactivate_tween: Tween
+func deactivate(_isKilled: bool = false):
 	if not activated:
 		return
+		
 	activated = false
-	set_deferred("monitorable", false)
-	set_deferred("monitoring", false)
 	onSpawnFunc = Callable()
 	move_override = Callable()
-	var _tween : Tween = create_tween()
-	_tween.tween_property(self,"move_spd", 0.0, 0.45)
-	_tween.parallel().tween_property(body_pic, "modulate", Color.TRANSPARENT, 0.45 )
-	await _tween.finished
 	move_OverrideDir = Vector2.ZERO
 	override_CustomValue = 0.0
 	override_VeerStr = 0.0
 	move_overrideDurMax = 0.0
 	move_overrideDur = 0.0
+	
+	set_deferred("monitorable", false)
+	set_deferred("monitoring", false)
+	if _isKilled:
+		#if _deactivate_tween and _deactivate_tween.is_running():
+			#_deactivate_tween.kill()
+		var _deactivate_tween = create_tween()
+		_deactivate_tween.tween_property(self,"move_spd", 0.0, 0.33)
+		_deactivate_tween.parallel().tween_property(body_pic, "modulate", Color.TRANSPARENT, 0.33 )
+		await _deactivate_tween.finished
 	visible = false
 	returnedToPool.emit(self)
 
+
+var dmgNumber: DamageNumberText = null
+var isDamaged: float = -999.0
 func takeDamage(_amount: float):
+	
+	# if its not damaged (isDamaged <= 0, latch a dmg number)        
+	# isDamaged = 0.8 ; which is the amount of time the damage number will latch on the enemy
+	# if isDamaged > 0 : isDamaged -= delta should also be put on func process
 	var real_amount : float
 	real_amount = clampf(_amount , 1.0 , _amount - DEF )  
 	HP -= real_amount
+	var displayAmount : int = roundi(real_amount)  
+	if isDamaged <= 0 :     # checks if the enemy is already damaged or not.
+		isDamaged = dmgNumber.DMGACCUMULATIONTIMER
+		dmgNumber = DmgNumberPool.put_DmgNumber_toSmallEnemies(self,displayAmount) 
+	else:
+		isDamaged =  dmgNumber.DMGACCUMULATIONTIMER
+		dmgNumber.activate(displayAmount)
+	
 	if HP <= 0 :
 		spawnDrop()
-		await get_tree().process_frame
-		deactivate()
+		deactivate(true) # enemy is killed.
 
 func spawnDrop():
 	match enemy_rarity:
@@ -173,7 +199,6 @@ func spawnDrop():
 			var PUSpawnChance : float = 0.21 + (0.02 * (onGoingDiff - 3)) # 21% base chance chance + enemy dif
 			PUSpawnChance = clamp(PUSpawnChance,0.1, 0.6)
 			if randf() < PUSpawnChance : 
-				
 				var PU : Power_Up = PowerUp.instantiate()
 				PU.global_position = global_position
 				PU.move_speed += move_spd * 0.2
